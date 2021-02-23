@@ -1,0 +1,29 @@
+.xpBar {
+    display: flex;
+    align-items: center;
+}
+
+.xpBar span {
+    font-size: 1rem;
+}
+
+.xpBar > div {
+    flex: 1;
+    height: 4px;
+    border-radius: 4px;
+    background: var(--gray-line);
+    margin: 0 1.5rem;
+    position: relative;
+}
+
+.xpBar > div > div {
+    height: 4px;
+    border-radius: 4px;
+    background: var(--green);
+}
+
+.currentXp {
+    position: absolute;
+    top: 12px;
+    transform: translateX(-50%);
+}
