@@ -1,8 +1,12 @@
-import { CompletedChalenges } from '../components/CompletedChalenges';
-import { Countdown } from '../components/Countdown';
-import { Profile } from '../components/Profile';
-import { XpBar } from "../components/XpBar";
+import React from 'react'
 import Head from 'next/head'
+
+import { CompletedChallenges } from '../components/CompletedChallenges'
+import { Countdown } from '../components/Countdown'
+import { Profile } from '../components/Profile'
+import { XpBar } from "../components/XpBar"
+import { ChallengeBox } from '../components/ChallengeBox'
+
 import home from '../css/components/home.module.css'
 
 export default function Home() {
@@ -17,12 +21,12 @@ export default function Home() {
       <section>
         <div>
           <Profile />
-          <CompletedChalenges />
+          <CompletedChallenges />
           <Countdown />
         </div>
 
         <div>
-
+          <ChallengeBox />
         </div>
       </section>
     </div>
