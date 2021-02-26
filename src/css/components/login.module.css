@@ -1,0 +1,45 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background: var(--blue-dark);
+}
+
+.half {
+    width: 50vw;
+    padding: 50px;
+}
+
+#login h1 {
+    margin: 50px 0 20px;
+    color: var(--white)
+}
+
+#login .github {
+    margin-bottom: 20px;
+    color: var(--text-highlight)
+}
+
+#login .github img {
+    margin-right: 15px;
+}
+
+#login form {
+    width: fit-content;
+    position: relative;
+}
+
+#login form input {
+    padding: 20px;
+    color: var(--text-highlight);
+    background: var(--blue);
+    border: none;
+    border-radius: 5px;
+}
+
+#login form button {
+    position: absolute;
+    right: 0;
+    padding: 7px;
+    height: 100%;
+}
