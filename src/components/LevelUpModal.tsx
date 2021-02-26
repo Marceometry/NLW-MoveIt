@@ -7,7 +7,7 @@ export function LevelUpModal() {
 
   return (
     <div className={css.overlay}>
-      <div className={css.container}>
+      <div className={`${css.container} animate-up`}>
         <header> {level} </header>
 
         <strong> Parabéns! </strong>

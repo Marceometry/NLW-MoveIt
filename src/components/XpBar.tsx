@@ -8,7 +8,7 @@ export function XpBar() {
     const percentToNextLevel = Math.round(currentXp * 100) / xpToNextLevel
 
     return (
-        <header className={css.xpBar}>
+        <header className={`${css.xpBar} animate-down`}>
             <span> 0 xp </span>
             <div>
                 <div style={{ width: `${percentToNextLevel}%` }}/>

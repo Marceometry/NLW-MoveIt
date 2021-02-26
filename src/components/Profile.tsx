@@ -7,12 +7,12 @@ export function Profile() {
 
     return (
         <div className={css.profileContainer}>
-            <img src="https://github.com/marceometry.png" alt="Marcelino Teixeira"/>
+            <img className='animate-left' src="https://github.com/marceometry.png" alt="Marcelino Teixeira"/>
 
             <div>
-                <strong>Marcelino Teixeira</strong>
+                <strong className='animate-appear'>Marcelino Teixeira</strong>
 
-                <p> <img src="icons/level.svg" alt="Level"/> 
+                <p className='animate-up'> <img src="icons/level.svg" alt="Level"/> 
                     Level {level}
                 </p>
             </div>

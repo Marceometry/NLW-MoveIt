@@ -17,7 +17,7 @@ export function Countdown() {
 
   return (
     <div>
-      <div className={css.countdownContainer}>
+      <div className={`${css.countdownContainer} animate-left`}>
         <div>
           <span>{minuteLeft}</span>
           <span>{minuteRight}</span>
@@ -64,7 +64,7 @@ export function Countdown() {
           ) : (
             <button
               type="button"
-              className={css.countdownButton}
+              className={`${css.countdownButton} animate-up`}
               onClick={startCountdown}
             >
               Iniciar ciclo
@@ -78,9 +78,6 @@ export function Countdown() {
           }
         </>
       )}
-
-
-      
     </div>
   )
 }

@@ -6,9 +6,9 @@ export function CompletedChallenges() {
     const { challengesCompleted } = useContext(ChallengesContext)
     
     return (
-        <div className={css.completedChallenges}>
-            <span>Desafios completos</span>
-            <span>{challengesCompleted}</span>
+        <div className={`${css.completedChallenges} animate-appear`}>
+            <span className='animate-down'>Desafios completos</span>
+            <span className='animate-down'>{challengesCompleted}</span>
         </div>
     )
 }

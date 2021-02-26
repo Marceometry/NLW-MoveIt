@@ -18,7 +18,7 @@ export function ChallengeBox() {
   }
 
   return (
-    <div className={css.challengeBoxContainer}>
+    <div className={`${css.challengeBoxContainer} animate-appear`}>
       { currentChallenge ? (
         <div className={css.challengeActive}>
           <header>Ganhe {currentChallenge.amount} xp!</header>
