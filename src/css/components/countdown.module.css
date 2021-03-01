@@ -58,6 +58,7 @@
 }
 
 .countdownButtonActive {
+    position: relative;
     background: var(--white);
     color: var(--title);
 }
@@ -80,4 +81,16 @@
 
 .countdownButton.countdownButtonActive:hover svg path {
     fill: var(--white);
+}
+
+.countdownButtonActive #timeProgress {
+    height: 4px;
+
+    border-radius: 0 0 0 5px;
+    background: var(--green);
+    
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 5;
 }

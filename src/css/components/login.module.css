@@ -2,44 +2,81 @@
     width: 100vw;
     height: 100vh;
     display: flex;
-    background: var(--blue-dark);
+    background: var(--blue);
 }
 
-.half {
-    width: 50vw;
-    padding: 50px;
+.bg {
+    width: 60vw;
+    display: flex;
+}
+
+.loginContainer {
+    width: 40vw;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
 }
 
 #login h1 {
-    margin: 50px 0 20px;
+    margin: 100px 0 24px;
+    font-size: 2.25rem;
     color: var(--white)
 }
 
 #login .github {
-    margin-bottom: 20px;
-    color: var(--text-highlight)
+    max-width: 320px;
+    margin-bottom: 40px;
+    color: var(--text-highlight);
+    font-size: 1.25rem;
+    line-height: 1.875rem;
+
+    display: flex;
+    align-items: center;
 }
 
 #login .github img {
-    margin-right: 15px;
+    margin-right: 24px;
 }
 
 #login form {
-    width: fit-content;
-    position: relative;
+    width: 80%;
+    border-radius: 5px;
+
+    background: var(--blue);
+    border: none;
+
+    display: flex;
+    align-items: center;
+    overflow: hidden;
 }
 
 #login form input {
-    padding: 20px;
-    color: var(--text-highlight);
-    background: var(--blue);
+    flex: 1;
+    padding: 1.5rem 1.875rem;
+    
+    font-size: 1.25rem;
+    line-height: 2.125rem;
+    color: var(--white);
+    
     border: none;
-    border-radius: 5px;
+    background: linear-gradient(to right, var(--blue-dark), rgba(73, 83, 184, .2));
+}
+
+#login form input::placeholder {
+    color: var(--text-highlight);
+}
+
+#login form:valid button:hover {
+    background: var(--green);
 }
 
 #login form button {
-    position: absolute;
-    right: 0;
-    padding: 7px;
-    height: 100%;
+    width: 80px;
+    height: 80px;
+
+    border: none;
+    background: var(--blue-dark);
+    transition: background 200ms;
 }

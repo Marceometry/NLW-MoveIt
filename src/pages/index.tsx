@@ -21,21 +21,19 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   return (
-    // <ChallengesProvider
-    //   level={props.level}
-    //   currentXp={props.currentXp}
-    //   challengesCompleted={props.challengesCompleted}
-    // >
-      // <div className={home.container}>
-        <div>
-          <Head>
-            <title>Move.It | Início</title>
-          </Head>
+    <ChallengesProvider
+      level={props.level}
+      currentXp={props.currentXp}
+      challengesCompleted={props.challengesCompleted}
+    >
+      <div className={home.container}>
+        <Head>
+          <title>Move.It | Início</title>
+        </Head>
 
-          <Login />
-        </div>
+          {/* <Login /> */}
         
-        /*{ <XpBar />
+        <XpBar />
 
         <CountdownProvider>
           <section>
@@ -49,9 +47,9 @@ export default function Home(props: HomeProps) {
               <ChallengeBox />
             </div>
           </section>
-        </CountdownProvider> }*/
-      // </div>
-    // </ChallengesProvider>
+        </CountdownProvider>
+      </div>
+    </ChallengesProvider>
   )
 }
 
