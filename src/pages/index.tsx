@@ -6,6 +6,7 @@ import { ChallengesProvider } from '../contexts/ChalengesContext'
 import { CountdownProvider } from '../contexts/CountdownContext'
 import { CompletedChallenges } from '../components/CompletedChallenges'
 import { Countdown } from '../components/Countdown'
+import { SideBar } from '../components/sideBar'
 import { Profile } from '../components/Profile'
 import { XpBar } from "../components/XpBar"
 import { ChallengeBox } from '../components/ChallengeBox'
@@ -26,12 +27,15 @@ export default function Home(props: HomeProps) {
       currentXp={props.currentXp}
       challengesCompleted={props.challengesCompleted}
     >
+      <SideBar />
+      
       <div className={home.container}>
         <Head>
           <title>Move.It | Início</title>
         </Head>
 
           {/* <Login /> */}
+
         
         <XpBar />
 

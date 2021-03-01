@@ -1,0 +1,42 @@
+#aside {
+    height: 100vh;
+    background: linear-gradient(180deg, #FFFFFF 0%, #ffffff00 100%);
+
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#aside > img {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+}
+
+#aside nav {
+    display: flex;
+    flex-direction: column;
+}
+
+#aside nav > div {
+    position: relative;
+}
+
+#aside nav div .page.active {
+    width: 5px;
+    height: 3.5rem;
+    border-radius: 0 5px 5px 0;
+    background: var(--blue);
+    position: absolute;
+}
+
+#aside nav div img {
+    padding: .75rem 2.5rem;
+    cursor: pointer;
+}
+
+#aside nav img:first-child {
+    margin-bottom: 1rem;
+}
