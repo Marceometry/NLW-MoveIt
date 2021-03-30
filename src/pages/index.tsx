@@ -37,7 +37,7 @@ export default function Home(props: HomeProps) {
       <SideBar />
       
       <div className={home.container}>        
-        {/* <XpBar />
+        <XpBar />
 
         <CountdownProvider>
           <section>
@@ -51,9 +51,9 @@ export default function Home(props: HomeProps) {
               <ChallengeBox />
             </div>
           </section>
-        </CountdownProvider> */}
+        </CountdownProvider>
 
-        <Leaderboard />
+        {/* <Leaderboard /> */}
       </div>
     </ChallengesProvider>
   )
