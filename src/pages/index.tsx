@@ -13,6 +13,7 @@ import { ChallengeBox } from '../components/ChallengeBox'
 import Login from './login'
 
 import home from '../css/components/home.module.css'
+import Leaderboard from './leaderboard'
 
 interface HomeProps {
   level: number;
@@ -27,17 +28,16 @@ export default function Home(props: HomeProps) {
       currentXp={props.currentXp}
       challengesCompleted={props.challengesCompleted}
     >
+      <Head>
+        <title>Move.It | Início</title>
+      </Head>
+
+      {/* <Login /> */}
+      
       <SideBar />
       
-      <div className={home.container}>
-        <Head>
-          <title>Move.It | Início</title>
-        </Head>
-
-          {/* <Login /> */}
-
-        
-        <XpBar />
+      <div className={home.container}>        
+        {/* <XpBar />
 
         <CountdownProvider>
           <section>
@@ -51,7 +51,9 @@ export default function Home(props: HomeProps) {
               <ChallengeBox />
             </div>
           </section>
-        </CountdownProvider>
+        </CountdownProvider> */}
+
+        <Leaderboard />
       </div>
     </ChallengesProvider>
   )

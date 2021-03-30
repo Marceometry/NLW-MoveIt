@@ -1,0 +1,38 @@
+.container {
+    width: 90%;
+    height: 100%;
+    margin-left: 82px
+}
+
+.container header section {
+    width: 100%;
+    margin-top: 16px;
+    padding: 24px 0;
+}
+
+.leaderboard .row {
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leaderboard .row .position {
+    font-size: 1.5rem;
+    padding: 34px;
+    margin-right: 5px;
+    background: var(--white);
+}
+
+.leaderboard .row .ra {
+    padding: 4.5px 10px;
+    background: var(--white);
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
