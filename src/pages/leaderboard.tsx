@@ -1,8 +1,27 @@
+import React from 'react'
+import Head from 'next/head'
 import css from '../css/components/leaderboard.module.css'
+import { SideBar } from '../components/SideBar'
+import { SideBarProvider } from '../contexts/SideBarContext'
 
-export default function Leaderboard() {
+interface LeaderboardProps {
+    home: boolean;
+    ranking: boolean;
+}
+
+export default function Leaderboard(props: LeaderboardProps) {
     return (
+        <SideBarProvider
+            home={props.home}
+            ranking={props.ranking}
+        >
+        <SideBar />
+        
         <div className={css.container}>
+            <Head>
+                <title>Move.It | Leaderboard</title>
+            </Head>
+
             <header>
                 <h1> Leaderboard </h1>
 
@@ -284,5 +303,6 @@ export default function Leaderboard() {
                 </div>
             </div>
         </div>
+        </SideBarProvider>
     )
 }

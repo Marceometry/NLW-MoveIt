@@ -1,8 +1,15 @@
+import React from 'react'
+import Head from 'next/head'
+import Link from 'next/link'
 import css from '../css/components/login.module.css'
 
 export default function Login() {
     return (
         <div className={css.container}>
+            <Head>
+                <title>Move.It | Login</title>
+            </Head>
+
             <div className={css.bg}>
                 <img src="bg.svg" alt=""/>
             </div>
@@ -25,9 +32,13 @@ export default function Login() {
                         <form>
                             <input type="text" name="user" id="githubUser" placeholder="Digite seu username"/>
 
-                            <button>
-                                <img src="icons/arrow-right.svg" alt="->"/>
-                            </button>
+                            <Link href="/">
+                                <a>
+                                    <button type="button">
+                                        <img src="icons/arrow-right.svg" alt="->"/>
+                                    </button>
+                                </a>
+                            </Link>
                         </form>
                     </main>
                 </div>

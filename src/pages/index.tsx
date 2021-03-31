@@ -4,21 +4,23 @@ import { GetServerSideProps } from 'next'
 
 import { ChallengesProvider } from '../contexts/ChalengesContext'
 import { CountdownProvider } from '../contexts/CountdownContext'
+import { SideBarProvider } from '../contexts/SideBarContext'
+
 import { CompletedChallenges } from '../components/CompletedChallenges'
 import { Countdown } from '../components/Countdown'
-import { SideBar } from '../components/sideBar'
+import { SideBar } from '../components/SideBar'
 import { Profile } from '../components/Profile'
 import { XpBar } from "../components/XpBar"
 import { ChallengeBox } from '../components/ChallengeBox'
-import Login from './login'
 
-import home from '../css/components/home.module.css'
-import Leaderboard from './leaderboard'
+import homePage from '../css/components/home.module.css'
 
 interface HomeProps {
   level: number;
   currentXp: number;
   challengesCompleted: number;
+  home: boolean;
+  ranking: boolean;
 }
 
 export default function Home(props: HomeProps) {
@@ -32,29 +34,30 @@ export default function Home(props: HomeProps) {
         <title>Move.It | Início</title>
       </Head>
 
-      {/* <Login /> */}
-      
-      <SideBar />
-      
-      <div className={home.container}>        
-        <XpBar />
+      <SideBarProvider
+        home={props.home}
+        ranking={props.ranking}
+      >
+        <SideBar />
+        
+        <div className={homePage.container}>        
+          <XpBar />
 
-        <CountdownProvider>
-          <section>
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
+          <CountdownProvider>
+            <section>
+              <div>
+                <Profile />
+                <CompletedChallenges />
+                <Countdown />
+              </div>
 
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownProvider>
-
-        {/* <Leaderboard /> */}
-      </div>
+              <div>
+                <ChallengeBox />
+              </div>
+            </section>
+          </CountdownProvider>
+        </div>
+      </SideBarProvider>
     </ChallengesProvider>
   )
 }
