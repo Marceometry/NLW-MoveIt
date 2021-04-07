@@ -1,19 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Head from 'next/head'
 import { GetServerSideProps } from 'next'
 
 import { ChallengesProvider } from '../contexts/ChalengesContext'
-import { CountdownProvider } from '../contexts/CountdownContext'
 import { SideBarProvider } from '../contexts/SideBarContext'
 
-import { CompletedChallenges } from '../components/CompletedChallenges'
-import { Countdown } from '../components/Countdown'
 import { SideBar } from '../components/SideBar'
-import { Profile } from '../components/Profile'
-import { XpBar } from "../components/XpBar"
-import { ChallengeBox } from '../components/ChallengeBox'
-
-import homePage from '../css/components/home.module.css'
+import HomePage from '../components/HomePage'
 
 interface HomeProps {
   level: number;
@@ -30,33 +23,14 @@ export default function Home(props: HomeProps) {
       currentXp={props.currentXp}
       challengesCompleted={props.challengesCompleted}
     >
-      <Head>
-        <title>Move.It | Início</title>
-      </Head>
-
       <SideBarProvider
         home={props.home}
         ranking={props.ranking}
       >
         <SideBar />
+
+        <HomePage />
         
-        <div className={homePage.container}>        
-          <XpBar />
-
-          <CountdownProvider>
-            <section>
-              <div>
-                <Profile />
-                <CompletedChallenges />
-                <Countdown />
-              </div>
-
-              <div>
-                <ChallengeBox />
-              </div>
-            </section>
-          </CountdownProvider>
-        </div>
       </SideBarProvider>
     </ChallengesProvider>
   )

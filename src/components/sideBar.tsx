@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Link from 'next/link'
 import css from "../css/components/sideBar.module.css";
 import { SideBarContext } from "../contexts/SideBarContext";
 
@@ -14,29 +13,25 @@ export function SideBar() {
         <div>
           <div className={`${css.page} ${home ? css.active : ''}`}></div>
 
-          <Link href="/">
-            <a>
-              { home ? (
-                <img src="icons/home-active.svg" alt="Home" />
-              ) : (
-                <img onClick={openHome} src="icons/home.svg" alt="Home" />
-              )}
-            </a>
-          </Link>
+          <a>
+            { home ? (
+              <img src="icons/home-active.svg" alt="Home" />
+            ) : (
+              <img onClick={openHome} src="icons/home.svg" alt="Home" />
+            )}
+          </a>
         </div>
 
         <div>
           <div className={`${css.page} ${ranking ? css.active : ''}`}></div>
           
-          <Link href="/leaderboard">
-            <a>
-              { ranking ? (
-                <img src="icons/ranking-active.svg" alt="Ranking" />
-              ) : (
-                <img onClick={openRanking} src="icons/ranking.svg" alt="Ranking" />
-              )}
-            </a>
-          </Link>
+          <a>
+            { ranking ? (
+              <img src="icons/ranking-active.svg" alt="Ranking" />
+            ) : (
+              <img onClick={openRanking} src="icons/ranking.svg" alt="Ranking" />
+            )}
+          </a>
         </div>
       </nav>
     </aside>
