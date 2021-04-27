@@ -4,7 +4,6 @@ import { GetServerSideProps } from 'next'
 
 import { ChallengesProvider } from '../contexts/ChalengesContext'
 import { CountdownProvider } from '../contexts/CountdownContext'
-import { SideBarProvider } from '../contexts/SideBarContext'
 
 import { CompletedChallenges } from '../components/CompletedChallenges'
 import { Countdown } from '../components/Countdown'
@@ -19,8 +18,6 @@ interface HomeProps {
   level: number;
   currentXp: number;
   challengesCompleted: number;
-  home: boolean;
-  ranking: boolean;
 }
 
 export default function Home(props: HomeProps) {
@@ -34,30 +31,25 @@ export default function Home(props: HomeProps) {
         <title>Move.It | Início</title>
       </Head>
 
-      <SideBarProvider
-        home={props.home}
-        ranking={props.ranking}
-      >
-        <SideBar />
+      <SideBar />
         
-        <div className={homePage.container}>        
-          <XpBar />
+      <div className={homePage.container}>        
+        <XpBar />
 
-          <CountdownProvider>
-            <section>
-              <div>
-                <Profile />
-                <CompletedChallenges />
-                <Countdown />
-              </div>
+        <CountdownProvider>
+          <section>
+            <div>
+              <Profile />
+              <CompletedChallenges />
+              <Countdown />
+            </div>
 
-              <div>
-                <ChallengeBox />
-              </div>
-            </section>
-          </CountdownProvider>
-        </div>
-      </SideBarProvider>
+            <div>
+              <ChallengeBox />
+            </div>
+          </section>
+        </CountdownProvider>
+      </div>
     </ChallengesProvider>
   )
 }

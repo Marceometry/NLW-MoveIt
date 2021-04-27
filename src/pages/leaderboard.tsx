@@ -2,19 +2,10 @@ import React from 'react'
 import Head from 'next/head'
 import css from '../css/components/leaderboard.module.css'
 import { SideBar } from '../components/SideBar'
-import { SideBarProvider } from '../contexts/SideBarContext'
 
-interface LeaderboardProps {
-    home: boolean;
-    ranking: boolean;
-}
-
-export default function Leaderboard(props: LeaderboardProps) {
+export default function Leaderboard() {
     return (
-        <SideBarProvider
-            home={props.home}
-            ranking={props.ranking}
-        >
+        <>
         <SideBar />
         
         <div className={css.container}>
@@ -303,6 +294,6 @@ export default function Leaderboard(props: LeaderboardProps) {
                 </div>
             </div>
         </div>
-        </SideBarProvider>
+        </>
     )
 }
