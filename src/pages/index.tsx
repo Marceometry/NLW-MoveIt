@@ -4,15 +4,15 @@ import { GetServerSideProps } from 'next'
 
 import { ChallengesProvider } from '../contexts/ChalengesContext'
 import { CountdownProvider } from '../contexts/CountdownContext'
-
+import { ChallengeBox } from '../components/ChallengeBox'
 import { CompletedChallenges } from '../components/CompletedChallenges'
 import { Countdown } from '../components/Countdown'
-import { SideBar } from '../components/SideBar'
 import { Profile } from '../components/Profile'
-import { XpBar } from "../components/XpBar"
-import { ChallengeBox } from '../components/ChallengeBox'
+import { SideBar } from '../components/SideBar'
+import { XpBar } from '../components/XpBar'
 
-import homePage from '../css/components/home.module.css'
+
+import homePage from '../css/homePage.module.css'
 
 interface HomeProps {
   level: number;

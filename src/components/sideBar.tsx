@@ -52,5 +52,5 @@ export function SideBar() {
         </div>
       </nav>
     </aside>
-  );
+  )
 }

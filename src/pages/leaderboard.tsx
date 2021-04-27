@@ -1,4 +1,3 @@
-import React from 'react'
 import Head from 'next/head'
 import css from '../css/components/leaderboard.module.css'
 import { SideBar } from '../components/SideBar'
