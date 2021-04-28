@@ -7,7 +7,7 @@ export default function Page() {
     <>
       {!session && <>
         Not signed in <br/>
-        <button onClick={() => signIn()}>Sign in</button>
+        <button onClick={() => signIn('github')}>Sign in</button>
       </>}
       {session && <>
         Signed in as {session.user.name} <br/>

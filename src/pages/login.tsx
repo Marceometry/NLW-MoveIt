@@ -1,9 +1,13 @@
 import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
+import { signIn, useSession } from 'next-auth/client'
+
 import css from '../css/components/login.module.css'
 
 export default function Login() {
+    const [ session, loading ] = useSession()
+    
     return (
         <div className={css.container}>
             <Head>
@@ -32,13 +36,11 @@ export default function Login() {
                         <form>
                             <input type="text" name="user" id="githubUser" placeholder="Digite seu username"/>
 
-                            <Link href="/">
-                                <a>
-                                    <button type="button">
-                                        <img src="icons/arrow-right.svg" alt="->"/>
-                                    </button>
-                                </a>
-                            </Link>
+                            <a href="/" onClick={() => signIn('github')}>
+                                <button type="button">
+                                    <img src="icons/arrow-right.svg" alt="->"/>
+                                </button>
+                            </a>
                         </form>
                     </main>
                 </div>
