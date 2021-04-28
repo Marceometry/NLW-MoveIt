@@ -8,6 +8,9 @@ const options = {
       clientSecret: process.env.GITHUB_SECRET
     })
   ],
+  pages: {
+    signIn: "/login",
+  }
 
 //   database: process.env.MONGODB_URL
 }

@@ -1,13 +1,11 @@
 import React from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
-import { signIn, useSession } from 'next-auth/client'
+import { GetServerSideProps } from 'next'
+import { getProviders, getSession, signIn } from 'next-auth/client'
 
 import css from '../css/components/login.module.css'
 
 export default function Login() {
-    const [ session, loading ] = useSession()
-    
     return (
         <div className={css.container}>
             <Head>
@@ -36,7 +34,7 @@ export default function Login() {
                         <form>
                             <input type="text" name="user" id="githubUser" placeholder="Digite seu username"/>
 
-                            <a href="/" onClick={() => signIn('github')}>
+                            <a onClick={() => signIn('github')}>
                                 <button type="button">
                                     <img src="icons/arrow-right.svg" alt="->"/>
                                 </button>
@@ -48,3 +46,21 @@ export default function Login() {
         </div>
     )
 }
+
+// export const getServerSideProps: GetServerSideProps = async (ctx) => {
+//     const { req, res } = ctx
+
+//     const session = await getSession({ req })
+//     if (session && res && session.accessToken) {
+//         res.writeHead(302, {
+//             Location: "/",
+//         });
+//         res.end();
+//         return;
+//     }
+
+//     const providers = await getProviders()
+//     return {
+//         props: { providers }
+//     }
+// }

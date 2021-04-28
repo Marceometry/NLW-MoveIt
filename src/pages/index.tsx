@@ -9,7 +9,7 @@ import { ChallengeBox } from '../components/ChallengeBox'
 import { CompletedChallenges } from '../components/CompletedChallenges'
 import { Countdown } from '../components/Countdown'
 import { Profile } from '../components/Profile'
-import { SideBar } from '../components/SideBar'
+import { SideBar } from '../components/sideBar'
 import { XpBar } from '../components/XpBar'
 
 
@@ -37,6 +37,8 @@ export default function Home(props: HomeProps) {
     }
     fetchData()
   }, [session])
+  
+  if (typeof window !== "undefined" && loading) return <h2>Carregando...</h2>;
 
   return (
     <>
