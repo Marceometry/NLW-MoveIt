@@ -1,8 +1,7 @@
 import NextAuth from 'next-auth'
 import Providers from 'next-auth/providers'
 
-export default NextAuth({
-  // Configure authentication provider
+const options = {
   providers: [
     Providers.GitHub({
       clientId: process.env.GITHUB_ID,
@@ -10,5 +9,7 @@ export default NextAuth({
     })
   ],
 
-  database: process.env.DATABASE_URL
-})
+//   database: process.env.MONGODB_URL
+}
+
+export default (req, res) => NextAuth(req, res, options)

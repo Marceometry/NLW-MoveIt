@@ -10,7 +10,7 @@ export default function Page() {
         <button onClick={() => signIn()}>Sign in</button>
       </>}
       {session && <>
-        Signed in as {session.user.email} <br/>
+        Signed in as {session.user.name} <br/>
         <button onClick={() => signOut()}>Sign out</button>
       </>}
     </>

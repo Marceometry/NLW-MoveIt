@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "js-cookie": "^2.2.1",
+    "mongodb": "^3.6.6",
     "next": "10.0.7",
     "next-auth": "^3.18.0",
     "react": "17.0.1",
