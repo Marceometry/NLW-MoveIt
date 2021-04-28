@@ -3,15 +3,15 @@ import Head from 'next/head'
 import { GetServerSideProps } from 'next'
 import { useSession } from 'next-auth/client'
 
+import { api } from '../services/api'
 import { ChallengesProvider } from '../contexts/ChalengesContext'
 import { CountdownProvider } from '../contexts/CountdownContext'
 import { ChallengeBox } from '../components/ChallengeBox'
 import { CompletedChallenges } from '../components/CompletedChallenges'
 import { Countdown } from '../components/Countdown'
 import { Profile } from '../components/Profile'
-import { SideBar } from '../components/sideBar'
+import { SideBar } from '../components/SideBar'
 import { XpBar } from '../components/XpBar'
-
 
 import homePage from '../css/homePage.module.css'
 import Link from 'next/link'
@@ -28,11 +28,10 @@ export default function Home(props: HomeProps) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch('/api/secret')
-      const json = await res.json()
+      const { data } = await api.get('/api/secret')
 
-      if(json.content) {
-        setContent(json.content)
+      if(data.content) {
+        setContent(data.content)
       }
     }
     fetchData()

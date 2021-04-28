@@ -47,20 +47,20 @@ export default function Login() {
     )
 }
 
-// export const getServerSideProps: GetServerSideProps = async (ctx) => {
-//     const { req, res } = ctx
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+    const { req, res } = ctx
 
-//     const session = await getSession({ req })
-//     if (session && res && session.accessToken) {
-//         res.writeHead(302, {
-//             Location: "/",
-//         });
-//         res.end();
-//         return;
-//     }
+    const session = await getSession({ req })
+    if (session && res && session.accessToken) {
+        res.writeHead(302, {
+            Location: "/",
+        });
+        res.end();
+        return;
+    }
 
-//     const providers = await getProviders()
-//     return {
-//         props: { providers }
-//     }
-// }
+    const providers = await getProviders()
+    return {
+        props: { providers }
+    }
+}
