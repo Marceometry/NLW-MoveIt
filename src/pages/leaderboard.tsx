@@ -14,9 +14,10 @@ type LeaderboardProps = {
 }
 
 export default function Leaderboard() {
-    const { data, error } = useSWR('/api/user/find/all', api, {
+    const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all`, api, {
         revalidateOnFocus: false,
     })
+    mutate(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all`)
 
     if (!data) return <div className="loading"><h2>Carregando...</h2></div>
     if (error) return <div className="loading"><h2>Erro</h2></div>
