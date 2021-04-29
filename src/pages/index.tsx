@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
-import { useSession } from 'next-auth/client'
+import { useSession, signOut, getSession } from 'next-auth/client'
 
 import { api } from '../services/api'
 import { ChallengesProvider } from '../contexts/ChalengesContext'
@@ -14,38 +15,30 @@ import { SideBar } from '../components/SideBar'
 import { XpBar } from '../components/XpBar'
 
 import homePage from '../css/homePage.module.css'
-import Link from 'next/link'
 
 interface HomeProps {
   level: number;
   currentXp: number;
+  totalXp: number;
   challengesCompleted: number;
 }
 
 export default function Home(props: HomeProps) {
   const [ session, loading ] = useSession()
-  const [ content, setContent ] = useState()
+  const router = useRouter()
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await api.get('/api/secret')
-
-      if(data.content) {
-        setContent(data.content)
-      }
+    if (!session) {
+      router.push('/login')
     }
-    fetchData()
   }, [session])
   
-  if (typeof window !== "undefined" && loading) return <h2>Carregando...</h2>;
 
   return (
     <>
-    {!session && (
-      <div>
-        <h1>Você precisa estar logado para acessar esta página</h1>
-  
-        <Link href="/login"><h3>Ir para a página de Login</h3></Link>
+    {loading && (
+      <div className="loading">
+        <h2>Carregando...</h2>
       </div>
     )}
 
@@ -53,6 +46,7 @@ export default function Home(props: HomeProps) {
       <ChallengesProvider
         level={props.level}
         currentXp={props.currentXp}
+        totalXp={props.totalXp}
         challengesCompleted={props.challengesCompleted}
       >
         <Head>
@@ -76,6 +70,7 @@ export default function Home(props: HomeProps) {
                 <ChallengeBox />
               </div>
             </section>
+            <button onClick={() => signOut()}>Sign out</button>
           </CountdownProvider>
         </div>
       </ChallengesProvider>
@@ -85,14 +80,45 @@ export default function Home(props: HomeProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { req } = ctx
+  const session = await getSession({ req })
+
+  if (session) {
+    const { data } = await api.get(`/api/user/search/${session.user.email}`)
   
-  const { level, currentXp, challengesCompleted } = ctx.req.cookies
-  
-  return {
-    props: {
-      level: Number(level),
-      currentXp: Number(currentXp),
-      challengesCompleted: Number(challengesCompleted)
+    if (data.error) {
+      await api.post(`/api/user/add/${session.user.email}`)
+      const { data } = await api.get(`/api/user/search/${session.user.email}`)
+
+      const { level, currentXp, totalXp, challengesCompleted } = data
+      
+      return {
+        props: {
+          level: level,
+          currentXp: currentXp,
+          totalXp: totalXp,
+          challengesCompleted: challengesCompleted
+        }
+      }
     }
+
+    const { level, currentXp, totalXp, challengesCompleted } = data
+    
+    return {
+      props: {
+        level: level,
+        currentXp: currentXp,
+        totalXp: totalXp,
+        challengesCompleted: challengesCompleted
+      }
+    }
+  } else {
+    return {
+      redirect: {
+        permanent: true,
+        destination: "/login",
+      },
+      props:{},
+    };
   }
 }

@@ -12,6 +12,7 @@ interface Challenge {
 interface ChallengesContextData {
     level: number; 
     currentXp: number; 
+    totalXp: number; 
     xpToNextLevel: number;
     challengesCompleted: number; 
     currentChallenge: Challenge;
@@ -26,6 +27,7 @@ interface ChallengesProviderProps {
     children: ReactNode;
     level: number;
     currentXp: number;
+    totalXp: number;
     challengesCompleted: number;
 }
 
@@ -34,6 +36,7 @@ export const ChallengesContext = createContext({} as ChallengesContextData)
 export function ChallengesProvider({ children, ...rest }: ChallengesProviderProps) {
     const [level, setLevel] = useState(rest.level ?? 1)
     const [currentXp, setCurrentXp] = useState(rest.currentXp ?? 0)
+    const [totalXp, setTotalXp] = useState(rest.totalXp ?? 0)
     const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0)
 
     const [currentChallenge, setCurrentChallenge] = useState(null)
@@ -48,6 +51,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     useEffect(() => {
         Cookies.set('level', String(level))
         Cookies.set('currentXp', String(currentXp))
+        Cookies.set('totalXp', String(totalXp))
         Cookies.set('challengesCompleted', String(challengesCompleted))
     }, [level, currentXp, challengesCompleted])
 
@@ -94,6 +98,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
 
         resetChallenge()
         setCurrentXp(finalXp)
+        setTotalXp(totalXp + amount)
         setChallengesCompleted(challengesCompleted + 1)
     }
 
@@ -102,6 +107,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
             value={{
                 level, 
                 currentXp, 
+                totalXp, 
                 xpToNextLevel,
                 challengesCompleted, 
                 currentChallenge,

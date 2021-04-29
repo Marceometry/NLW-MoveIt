@@ -2,9 +2,10 @@ import React from 'react'
 import Head from 'next/head'
 import { GetServerSideProps } from 'next'
 import { getProviders, getSession, useSession, signIn } from 'next-auth/client'
+import { useRouter } from 'next/router'
+import { api } from '../services/api'
 
 import css from '../css/components/login.module.css'
-import { useRouter } from 'next/router'
 
 export default function Login() {
     const [ session, loading ] = useSession()
@@ -14,9 +15,7 @@ export default function Login() {
         router.push('/')
     }
 
-    if (loading) {
-        return <h1>Carregando...</h1>
-    }
+    if (typeof window !== "undefined" && loading) return <h2>Carregando...</h2>;
 
     return (
         <>

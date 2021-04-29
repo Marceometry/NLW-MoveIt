@@ -10,9 +10,9 @@ const options = {
   ],
   pages: {
     signIn: "/login",
-  }
+  },
 
-//   database: process.env.MONGODB_URL
+  database: process.env.MONGODB_DB_URL
 }
 
 export default (req, res) => NextAuth(req, res, options)
