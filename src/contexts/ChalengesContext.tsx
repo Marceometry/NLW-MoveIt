@@ -71,11 +71,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
         // console.log(level)
         if (challengesCompleted === 0) {return}
         // console.log(level)
-        api.post(`/api/user/update/${session.user.email}?
-            level=${String(level)}&
-            currentXp=${String(currentXp)}&
-            totalXp=${String(totalXp)}&
-            challengesCompleted=${String(challengesCompleted)}
+        api.post(`/api/user/update/${session.user.email}?level=${String(level)}&currentXp=${String(currentXp)}&totalXp=${String(totalXp)}&challengesCompleted=${String(challengesCompleted)}
         `)
     }, [level, currentXp, totalXp, challengesCompleted])
 

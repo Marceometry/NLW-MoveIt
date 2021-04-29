@@ -18,8 +18,6 @@ export default async function FindOneUser(req, res) {
             challengesCompleted
         }: UsersGameInfo = req.query
 
-        console.log(level)
-
         if (!email) {
             res.status(400).json({ error: "Configure seu email como público no Github" })
             return
@@ -29,10 +27,10 @@ export default async function FindOneUser(req, res) {
         db.collection("usersGameInfo").updateOne(
             { email: email },
             { $set: {
-                level: level,
-                currentXp: currentXp,
-                totalXp: totalXp,
-                challengesCompleted: challengesCompleted
+                level: Number(level),
+                currentXp: Number(currentXp),
+                totalXp: Number(totalXp),
+                challengesCompleted: Number(challengesCompleted)
             }})
 
         res.status(200).json({success: true})
