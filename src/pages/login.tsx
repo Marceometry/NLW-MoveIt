@@ -1,9 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
-import { GetServerSideProps } from 'next'
-import { getProviders, getSession, useSession, signIn } from 'next-auth/client'
+import { useSession, signIn } from 'next-auth/client'
 import { useRouter } from 'next/router'
-import { api } from '../services/api'
 
 import css from '../css/components/login.module.css'
 
@@ -15,10 +13,14 @@ export default function Login() {
         router.push('/')
     }
 
-    if (typeof window !== "undefined" && loading) return <h2>Carregando...</h2>;
-
     return (
         <>
+        {loading && (
+          <div className="loading">
+            <h2>Carregando...</h2>
+          </div>
+        )}
+
         {!session && (
             <div className={css.container}>
                 <Head>
@@ -61,21 +63,3 @@ export default function Login() {
         </>
     )
 }
-
-// export const getServerSideProps: GetServerSideProps = async (ctx) => {
-//     const { req, res } = ctx
-
-//     const session = await getSession({ req })
-//     if (session && res && session.accessToken) {
-//         res.writeHead(302, {
-//             Location: "/",
-//         });
-//         res.end();
-//         return;
-//     }
-
-//     const providers = await getProviders()
-//     return {
-//         props: { providers }
-//     }
-// }

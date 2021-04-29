@@ -3,6 +3,7 @@ import connect from "../../../../services/database";
 type UsersGameInfo = {
     email: string
 }
+
 export default async function FindOneUser(req, res) {
     if (req.method === 'GET') {        
         const { email }: UsersGameInfo = req.query
@@ -16,7 +17,7 @@ export default async function FindOneUser(req, res) {
         const response = await db.collection("usersGameInfo").findOne({ email: email })
 
         if (!response) {
-            res.json({ error: true})
+            res.json({ error: true })
         } else {
             res.status(200).json(response)
         }

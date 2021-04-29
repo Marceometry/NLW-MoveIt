@@ -25,14 +25,6 @@ interface HomeProps {
 
 export default function Home(props: HomeProps) {
   const [ session, loading ] = useSession()
-  const router = useRouter()
-
-  useEffect(() => {
-    if (!session) {
-      router.push('/login')
-    }
-  }, [session])
-  
 
   return (
     <>
@@ -61,7 +53,7 @@ export default function Home(props: HomeProps) {
           <CountdownProvider>
             <section>
               <div>
-                <Profile />
+                <Profile name={session.user.name} img={session.user.image} />
                 <CompletedChallenges />
                 <Countdown />
               </div>

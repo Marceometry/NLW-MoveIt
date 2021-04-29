@@ -1,7 +1,9 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
 import Cookies from 'js-cookie'
+import { useSession } from 'next-auth/client'
 import challenges from '../../challenges.json'
 import { LevelUpModal } from '../components/LevelUpModal'
+import { api } from '../services/api'
 
 interface Challenge {
     type: 'body' | 'eye';
@@ -34,10 +36,27 @@ interface ChallengesProviderProps {
 export const ChallengesContext = createContext({} as ChallengesContextData)
 
 export function ChallengesProvider({ children, ...rest }: ChallengesProviderProps) {
-    const [level, setLevel] = useState(rest.level ?? 1)
-    const [currentXp, setCurrentXp] = useState(rest.currentXp ?? 0)
-    const [totalXp, setTotalXp] = useState(rest.totalXp ?? 0)
-    const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0)
+    const [session, loading] = useSession()
+
+    const [level, setLevel] = useState(1)
+    const [currentXp, setCurrentXp] = useState(0)
+    const [totalXp, setTotalXp] = useState(0)
+    const [challengesCompleted, setChallengesCompleted] = useState(0)
+
+    // useEffect(() => {
+    //     async function Data() {
+    //         const { data } = await api.get(`/api/user/search/${session.user.email}`)
+            
+    //         if (data.error) {return}
+    //         else if (data.challengesCompleted === 0) {return}
+
+    //         setLevel(data.level)
+    //         setCurrentXp(data.currentXp)
+    //         setTotalXp(data.totalXp)
+    //         setChallengesCompleted(data.challengesCompleted)
+    //     }
+    //     Data()
+    // }, [])
 
     const [currentChallenge, setCurrentChallenge] = useState(null)
     const [isLevelUpModalOpen, setLevelUpModalOpen] = useState(false)
@@ -49,15 +68,20 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     }, [])
 
     useEffect(() => {
-        Cookies.set('level', String(level))
-        Cookies.set('currentXp', String(currentXp))
-        Cookies.set('totalXp', String(totalXp))
-        Cookies.set('challengesCompleted', String(challengesCompleted))
-    }, [level, currentXp, challengesCompleted])
+        if (challengesCompleted === 0) {return}
+        console.log(level)
+        api.post(`/api/user/update/${session.user.email}?
+            level=${String(level)}&
+            currentXp=${String(currentXp)}&
+            totalXp=${String(totalXp)}&
+            challengesCompleted=${String(challengesCompleted)}
+        `)
+    }, [level, currentXp, totalXp, challengesCompleted])
 
     function levelUp() {
         setLevel(level + 1)
         setLevelUpModalOpen(true)
+        console.log(level)
     }
 
     function closeLevelUpModal() {
