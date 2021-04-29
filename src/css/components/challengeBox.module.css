@@ -85,7 +85,6 @@
 
 .challengeActive footer button {
     height: 3rem;
-    border: none;
     border-radius: 5px;
 
     color: var(--white);

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
-import { useSession, signOut, getSession } from 'next-auth/client'
+import { useSession, getSession } from 'next-auth/client'
 
 import { api } from '../services/api'
 import { ChallengesProvider } from '../contexts/ChalengesContext'
@@ -11,10 +10,11 @@ import { ChallengeBox } from '../components/ChallengeBox'
 import { CompletedChallenges } from '../components/CompletedChallenges'
 import { Countdown } from '../components/Countdown'
 import { Profile } from '../components/Profile'
-import { SideBar } from '../components/SideBar'
+import SideBar from '../components/SideBar'
 import { XpBar } from '../components/XpBar'
 
 import homePage from '../css/homePage.module.css'
+import SignOutButton from '../components/SignOutButton'
 
 interface HomeProps {
   level: number;
@@ -46,6 +46,7 @@ export default function Home(props: HomeProps) {
         </Head>
   
         <SideBar />
+        <SignOutButton />
           
         <div className={homePage.container}>        
           <XpBar />
@@ -62,7 +63,6 @@ export default function Home(props: HomeProps) {
                 <ChallengeBox />
               </div>
             </section>
-            <button onClick={() => signOut()}>Sign out</button>
           </CountdownProvider>
         </div>
       </ChallengesProvider>
@@ -76,11 +76,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getSession({ req })
 
   if (session) {
-    const { data } = await api.get(`/api/user/search/${session.user.email}`)
+    const { data } = await api.get(`/api/user/find/${session.user.email}`)
   
     if (data.error) {
-      await api.post(`/api/user/add/${session.user.email}`)
-      const { data } = await api.get(`/api/user/search/${session.user.email}`)
+      await api.post(`/api/user/add/${session.user.email}?name=${session.user.name}&image=${session.user.image}`)
+      const { data } = await api.get(`/api/user/find/${session.user.email}`)
 
       const { level, currentXp, totalXp, challengesCompleted } = data
       

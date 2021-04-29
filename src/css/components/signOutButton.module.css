@@ -1,0 +1,21 @@
+.signOutButton {
+    padding: 1rem;
+    color: var(--white);
+
+    border-radius: 10px;
+    background: var(--blue);
+    border: 1px solid var(--background);
+    
+    transition-property: background-color, color, border;
+    transition-duration: .2s;
+
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+}
+
+.signOutButton:hover {
+    color: var(--red);
+    background: var(--background);
+    border: 1px solid var(--red);
+}

@@ -2,13 +2,15 @@ import connect from "../../../../services/database";
 
 type UsersGameInfo = {
     email: string
+    name: string
+    image: string
 }
 
 export default async function AddUsersGameInfo(req, res) {
     if (req.method === 'POST') {
-        const { email }: UsersGameInfo = req.query
+        const { email, name, image }: UsersGameInfo = req.query
 
-        if (!email) {
+        if (!email || !name || !image) {
             res.status(400).json({ error: "Missing body parameters" })
             return
         }
@@ -16,6 +18,8 @@ export default async function AddUsersGameInfo(req, res) {
         const { db } = await connect()
         const response = await db.collection("usersGameInfo").insertOne({
             email,
+            name,
+            image,
             level: 1,
             currentXp: 0,
             totalXp: 0,

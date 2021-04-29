@@ -43,20 +43,20 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     const [totalXp, setTotalXp] = useState(0)
     const [challengesCompleted, setChallengesCompleted] = useState(0)
 
-    // useEffect(() => {
-    //     async function Data() {
-    //         const { data } = await api.get(`/api/user/search/${session.user.email}`)
+    useEffect(() => {
+        async function Data() {
+            const { data } = await api.get(`/api/user/find/${session.user.email}`)
             
-    //         if (data.error) {return}
-    //         else if (data.challengesCompleted === 0) {return}
+            if (data.error) {return}
+            else if (data.challengesCompleted === 0) {return}
 
-    //         setLevel(data.level)
-    //         setCurrentXp(data.currentXp)
-    //         setTotalXp(data.totalXp)
-    //         setChallengesCompleted(data.challengesCompleted)
-    //     }
-    //     Data()
-    // }, [])
+            setLevel(data.level)
+            setCurrentXp(data.currentXp)
+            setTotalXp(data.totalXp)
+            setChallengesCompleted(data.challengesCompleted)
+        }
+        Data()
+    }, [])
 
     const [currentChallenge, setCurrentChallenge] = useState(null)
     const [isLevelUpModalOpen, setLevelUpModalOpen] = useState(false)
