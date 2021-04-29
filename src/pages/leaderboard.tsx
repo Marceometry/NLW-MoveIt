@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import { GetServerSideProps } from 'next'
-import { useSession } from 'next-auth/client'
+import useSWR, { mutate } from 'swr'
+// import { GetServerSideProps } from 'next'
 
 import { SideBar } from '../components/SideNavBar'
 import { SignButton } from '../components/SignButton'
@@ -13,17 +13,20 @@ type LeaderboardProps = {
     users: User[]
 }
 
-export default function Leaderboard({ users }: LeaderboardProps) {
-    const [ session, loading ] = useSession()
+export default function Leaderboard() {
+    const { data, error } = useSWR('/api/user/find/all', api, {
+        revalidateOnFocus: false,
+    })
+
+    if (!data) return <div className="loading"><h2>Carregando...</h2></div>
+    if (error) return <div className="loading"><h2>Erro</h2></div>
+    
+    data.data.sort(function (a, b) {
+        return b.totalXp - a.totalXp;
+    })
 
     return (
         <>
-        {loading && (
-          <div className="loading">
-            <h2>Carregando...</h2>
-          </div>
-        )}
-
         <SideBar />
         <SignButton />
         
@@ -49,7 +52,7 @@ export default function Leaderboard({ users }: LeaderboardProps) {
             </header>
 
             <div className={css.leaderboard}>
-                <LeaderboardRow users={users} />
+                <LeaderboardRow users={data.data} />
             </div>
         </div>
         </>
@@ -65,18 +68,18 @@ type User = {
     challengesCompleted: number
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
-    const { data } = await api.get('/api/user/find/all')
+// export const getServerSideProps: GetServerSideProps = async () => {
+//     const { data } = await api.get('/api/user/find/all')
 
-    data.sort(function (a, b,) {
-        return b.totalXp - a.totalXp;
-    })
+//     data.sort(function (a, b,) {
+//         return b.totalXp - a.totalXp;
+//     })
 
-    const users = data
+//     const users = data
 
-    return {
-        props: {
-            users
-        }
-    }
-}
+//     return {
+//         props: {
+//             users
+//         }
+//     }
+// }
