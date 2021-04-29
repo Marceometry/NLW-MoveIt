@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { GetServerSideProps } from 'next'
 import { useSession } from 'next-auth/client'
 
-import { SideBar } from '../components/SideBar'
+import { SideBar } from '../components/SideNavBar'
 import { SignButton } from '../components/SignButton'
 import { api } from '../services/api'
 

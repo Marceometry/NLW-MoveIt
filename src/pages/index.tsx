@@ -10,7 +10,7 @@ import { ChallengeBox } from '../components/ChallengeBox'
 import { CompletedChallenges } from '../components/CompletedChallenges'
 import { Countdown } from '../components/Countdown'
 import { Profile } from '../components/Profile'
-import { SideBar } from '../components/SideBar'
+import { SideBar } from '../components/SideNavBar'
 import { XpBar } from '../components/XpBar'
 import { SignButton } from '../components/SignButton'
 
