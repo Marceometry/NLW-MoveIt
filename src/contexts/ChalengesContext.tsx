@@ -68,8 +68,9 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     }, [])
 
     useEffect(() => {
+        // console.log(level)
         if (challengesCompleted === 0) {return}
-        console.log(level)
+        // console.log(level)
         api.post(`/api/user/update/${session.user.email}?
             level=${String(level)}&
             currentXp=${String(currentXp)}&
@@ -81,7 +82,6 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     function levelUp() {
         setLevel(level + 1)
         setLevelUpModalOpen(true)
-        console.log(level)
     }
 
     function closeLevelUpModal() {
