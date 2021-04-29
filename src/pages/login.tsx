@@ -15,12 +15,6 @@ export default function Login() {
 
     return (
         <>
-        {loading && (
-          <div className="loading">
-            <h2>Carregando...</h2>
-          </div>
-        )}
-
         {!session && (
             <div className={css.container}>
                 <Head>
