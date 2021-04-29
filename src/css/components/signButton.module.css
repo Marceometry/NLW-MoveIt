@@ -1,10 +1,10 @@
 .signButton {
     padding: 1rem;
-    color: var(--white);
+    color: var(--blue);
 
     border-radius: 10px;
-    background: var(--blue);
-    border: 1px solid var(--background);
+    background: var(--background);
+    border: 1px solid var(--blue);
     
     transition-property: background-color, color, border;
     transition-duration: .2s;
@@ -15,13 +15,13 @@
 }
 
 #signOut:hover {
-    color: var(--red);
-    background: var(--background);
+    color: var(--white);
+    background: var(--red);
     border: 1px solid var(--red);
 }
 
 #signIn:hover {
-    color: var(--green);
-    background: var(--background);
+    color: var(--white);
+    background: var(--green);
     border: 1px solid var(--green);
 }
