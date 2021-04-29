@@ -81,7 +81,7 @@ type User = {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const { data } = await api.get(`/api/user/find/all`, {
+    const { data } = await api.get('/api/user/find/all', {
         params : {
           _sort: 'totalXp',
           _order: 'desc'
