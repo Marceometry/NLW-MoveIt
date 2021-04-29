@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import css from "../css/components/sideBar.module.css";
 
-export default function SideBar() {
+export function SideBar() {
   const [home, setHome] = useState(true)
   const [leaderboard, setLeaderboard] = useState(false)
   const router = useRouter()

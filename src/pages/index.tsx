@@ -10,11 +10,11 @@ import { ChallengeBox } from '../components/ChallengeBox'
 import { CompletedChallenges } from '../components/CompletedChallenges'
 import { Countdown } from '../components/Countdown'
 import { Profile } from '../components/Profile'
-import SideBar from '../components/SideBar'
+import { SideBar } from '../components/SideBar'
 import { XpBar } from '../components/XpBar'
+import { SignOutButton } from '../components/SignOutButton'
 
 import homePage from '../css/homePage.module.css'
-import SignOutButton from '../components/SignOutButton'
 
 interface HomeProps {
   level: number;

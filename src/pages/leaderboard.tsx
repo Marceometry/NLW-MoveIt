@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import { session, useSession } from 'next-auth/client'
 
-import SideBar from '../components/SideBar'
-import SignOutButton from '../components/SignOutButton'
+import { SideBar } from '../components/SideBar'
+import { SignOutButton } from '../components/SignOutButton'
 import css from '../css/components/leaderboard.module.css'
 import { GetServerSideProps } from 'next'
 import { api } from '../services/api'
