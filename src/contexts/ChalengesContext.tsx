@@ -1,9 +1,8 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
-import Cookies from 'js-cookie'
 import { useSession } from 'next-auth/client'
 import challenges from '../../challenges.json'
 import { LevelUpModal } from '../components/LevelUpModal'
-// import { api } from '../services/api'
+import { api } from '../services/api'
 
 interface Challenge {
     type: 'body' | 'eye';
@@ -43,20 +42,20 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     const [totalXp, setTotalXp] = useState(0)
     const [challengesCompleted, setChallengesCompleted] = useState(0)
 
-    // useEffect(() => {
-    //     async function Data() {
-    //         const { data } = await api.get(`/api/user/find/${session.user.email}`)
+    useEffect(() => {
+        async function Data() {
+            const { data } = await api.get(`/api/user/find/${session.user.email}`)
             
-    //         if (data.error) {return}
-    //         else if (data.challengesCompleted === 0) {return}
+            if (data.error) {return}
+            else if (data.challengesCompleted === 0) {return}
 
-    //         setLevel(data.level)
-    //         setCurrentXp(data.currentXp)
-    //         setTotalXp(data.totalXp)
-    //         setChallengesCompleted(data.challengesCompleted)
-    //     }
-    //     Data()
-    // }, [])
+            setLevel(data.level)
+            setCurrentXp(data.currentXp)
+            setTotalXp(data.totalXp)
+            setChallengesCompleted(data.challengesCompleted)
+        }
+        Data()
+    }, [])
 
     const [currentChallenge, setCurrentChallenge] = useState(null)
     const [isLevelUpModalOpen, setLevelUpModalOpen] = useState(false)
@@ -67,10 +66,10 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
         Notification.requestPermission()
     }, [])
 
-    // useEffect(() => {
-    //     if (challengesCompleted === 0) {return}
-    //     api.post(`/api/user/update/${session.user.email}?level=${String(level)}&currentXp=${String(currentXp)}&totalXp=${String(totalXp)}&challengesCompleted=${String(challengesCompleted)}`)
-    // }, [level, currentXp, totalXp, challengesCompleted])
+    useEffect(() => {
+        if (challengesCompleted === 0) {return}
+        api.post(`/api/user/update/${session.user.email}?level=${String(level)}&currentXp=${String(currentXp)}&totalXp=${String(totalXp)}&challengesCompleted=${String(challengesCompleted)}`)
+    }, [level, currentXp, totalXp, challengesCompleted])
 
     function levelUp() {
         setLevel(level + 1)
