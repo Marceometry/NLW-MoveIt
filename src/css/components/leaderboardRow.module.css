@@ -1,46 +1,4 @@
-.container {
-    width: 60%;
-    height: 100%;
-    margin: 0 auto;
-    padding-top: 50px;
-}
-
-.container header h1 {
-    color: var(--title);
-}
-
-.container header section {
-    width: 100%;
-    margin-top: 16px;
-    padding: 24px 0;
-
-    font-size: .875rem;
-    font-weight: bold;
-    opacity: .5;
-
-    display: flex;
-    justify-content: space-between;
-}
-
-.container header section div {
-    display: flex;
-    justify-content: space-between;
-}
-
-.container header section .leftHeader {
-    width: 11rem;
-}
-
-.container header section .rightHeader {
-    width: 18rem;
-    margin-right: 3rem;
-}
-
-.leaderboard {
-    padding-bottom: 50px;
-}
-
-.leaderboard .row {
+.row {
     width: 100%;
     margin-bottom: 8px;
     border-radius: 4px;
@@ -51,7 +9,7 @@
     justify-content: center;
 }
 
-.leaderboard .row .position {
+.row .position {
     width: 4.5rem;
     height: 6rem;
     padding: 2rem 0;
@@ -65,13 +23,17 @@
     justify-content: center;
 }
 
-.leaderboard .row .userInfo {
+.row .userInfo {
     padding: 1rem 0;
     background: var(--white);
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.row .userInfo#currentUser div div strong {
+    color: var(--blue);
 }
 
 /* ---------- profile ---------- */
@@ -101,6 +63,8 @@
 }
 
 .profileContainer div p {
+    display: flex;
+    align-items: center;
     font-size: 1rem;
     margin-top: .5rem
 }
@@ -113,13 +77,13 @@
 
 /* ------------------------------ */
 
-.leaderboard .row .userInfo .challengesAndXp {
+.row .userInfo .challengesAndXp {
     width: 18rem;
     margin-right: 3rem;
     display: flex;
     justify-content: space-between;
 }
 
-.leaderboard .row .userInfo div span strong {
+.row .userInfo div span strong {
     color: var(--blue);
 }

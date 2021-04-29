@@ -12,7 +12,7 @@ import { Countdown } from '../components/Countdown'
 import { Profile } from '../components/Profile'
 import { SideBar } from '../components/SideBar'
 import { XpBar } from '../components/XpBar'
-import { SignOutButton } from '../components/SignOutButton'
+import { SignButton } from '../components/SignButton'
 
 import homePage from '../css/homePage.module.css'
 
@@ -46,7 +46,7 @@ export default function Home(props: HomeProps) {
         </Head>
   
         <SideBar />
-        <SignOutButton />
+        <SignButton />
           
         <div className={homePage.container}>        
           <XpBar />

@@ -41,43 +41,32 @@
     margin-right: 24px;
 }
 
-#login form {
+#login button {
     width: 80%;
+    padding: 1.5rem 1.875rem;
     border-radius: 5px;
+    border: 2px solid var(--blue-dark);
+    background: var(--blue-dark);
+    
+    color: var(--white);
+    font-size: 1.25rem;
+    line-height: 2.125rem;
 
-    background: var(--blue);
-    border: none;
+    transition-property: background, border;
+    transition-duration: .2s;
 
     display: flex;
     align-items: center;
-    overflow: hidden;
+    justify-content: center;
 }
 
-#login form input {
-    flex: 1;
-    padding: 1.5rem 1.875rem;
-    
-    font-size: 1.25rem;
-    line-height: 2.125rem;
-    color: var(--white);
-    
-    border: none;
-    background: linear-gradient(to right, var(--blue-dark), rgba(73, 83, 184, .2));
+#login button:hover {
+    background: var(--blue);
+    border: 2px solid var(--green);
 }
 
-#login form input::placeholder {
-    color: var(--text-highlight);
+#login button img {
+    margin-left: 1rem;
 }
 
-#login form:valid button:hover {
-    background: var(--green);
-}
-
-#login form button {
-    width: 80px;
-    height: 80px;
-
-    border: none;
-    background: var(--blue-dark);
-    transition: background 200ms;
-}
+/* linear-gradient(to right, var(--blue-dark), rgba(73, 83, 184, .2)) */

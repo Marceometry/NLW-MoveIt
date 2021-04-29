@@ -1,11 +1,13 @@
 import Head from 'next/head'
-import { session, useSession } from 'next-auth/client'
+import { GetServerSideProps } from 'next'
+import { useSession } from 'next-auth/client'
 
 import { SideBar } from '../components/SideBar'
-import { SignOutButton } from '../components/SignOutButton'
-import css from '../css/components/leaderboard.module.css'
-import { GetServerSideProps } from 'next'
+import { SignButton } from '../components/SignButton'
 import { api } from '../services/api'
+
+import css from '../css/leaderboard.module.css'
+import { LeaderboardRow } from '../components/LeaderboardRow'
 
 type LeaderboardProps = {
     users: User[]
@@ -16,8 +18,14 @@ export default function Leaderboard({ users }: LeaderboardProps) {
 
     return (
         <>
+        {loading && (
+          <div className="loading">
+            <h2>Carregando...</h2>
+          </div>
+        )}
+
         <SideBar />
-        {session && <SignOutButton />}
+        <SignButton />
         
         <div className={css.container}>
             <Head>
@@ -41,30 +49,7 @@ export default function Leaderboard({ users }: LeaderboardProps) {
             </header>
 
             <div className={css.leaderboard}>
-                {users?.map((user: User, index) => (
-                    <div className={css.row} key={user.email}>
-                        <span className={css.position}> {index + 1} </span>
-
-                        <div className={css.userInfo}>
-                            <div className={css.profileContainer}>
-                                <img className='animate-left' src={user.image} alt={user.name}/>
-                                
-                                <div>
-                                    <strong className='animate-appear'>{user.name}</strong>
-
-                                    <p className='animate-up'> <img src="icons/level.svg" alt="Level"/> 
-                                        Level {user.level}
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <div className={css.challengesAndXp}>
-                                <span> <strong> {user.challengesCompleted} </strong> completados </span>
-                                <span> <strong> {user.totalXp} </strong> xp </span>
-                            </div>
-                        </div>
-                    </div>
-                ))}
+                <LeaderboardRow users={users} />
             </div>
         </div>
         </>
@@ -81,11 +66,10 @@ type User = {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    const { data } = await api.get('/api/user/find/all', {
-        params : {
-          _sort: 'totalXp',
-          _order: 'desc'
-        }
+    const { data } = await api.get('/api/user/find/all')
+
+    data.sort(function (a, b,) {
+        return b.totalXp - a.totalXp;
     })
 
     const users = data

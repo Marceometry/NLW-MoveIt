@@ -1,4 +1,4 @@
-.signOutButton {
+.signButton {
     padding: 1rem;
     color: var(--white);
 
@@ -14,8 +14,14 @@
     right: 3rem;
 }
 
-.signOutButton:hover {
+#signOut:hover {
     color: var(--red);
     background: var(--background);
     border: 1px solid var(--red);
+}
+
+#signIn:hover {
+    color: var(--green);
+    background: var(--background);
+    border: 1px solid var(--green);
 }

@@ -1,0 +1,41 @@
+.container {
+    width: 60%;
+    height: 100%;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+.container header h1 {
+    color: var(--title);
+}
+
+.container header section {
+    width: 100%;
+    margin-top: 16px;
+    padding: 24px 0;
+
+    font-size: .875rem;
+    font-weight: bold;
+    opacity: .5;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.container header section div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.container header section .leftHeader {
+    width: 11rem;
+}
+
+.container header section .rightHeader {
+    width: 18rem;
+    margin-right: 3rem;
+}
+
+.leaderboard {
+    padding-bottom: 50px;
+}
