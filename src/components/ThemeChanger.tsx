@@ -1,7 +1,10 @@
+import { useSession } from "next-auth/client"
 import { useEffect, useState } from "react"
+import { api } from "../services/api"
 import css from '../css/components/themeChanger.module.css'
 
 export function ThemeChanger(props) {
+    const [ session ] = useSession()
     const [ theme, setTheme ] = useState('light')
 
     const root = document.documentElement.style
@@ -14,14 +17,18 @@ export function ThemeChanger(props) {
 
     function changeTheme() {
         if (theme === 'light') {
+            api.post(`/api/user/update/theme/${session.user.email}?theme=dark`)
             setTheme('dark')
+            
             root.setProperty('--white', '#101010')
             root.setProperty('--background', '#202020')
             root.setProperty('--gray-line', '#818181')
             root.setProperty('--text', '#999999')
             root.setProperty('--title', '#aaaaaa')
-        } else {
+        } else if (theme === 'dark') {
+            api.post(`/api/user/update/theme/${session.user.email}?theme=light`)
             setTheme('light')
+
             root.setProperty('--white', '#fff')
             root.setProperty('--background', '#f2f3f5')
             root.setProperty('--gray-line', '#dcdde0')
