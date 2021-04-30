@@ -22,11 +22,11 @@
 }
 
 .countdownContainer > div span:first-child {
-    border-right: 1px solid #f0f1f3;
+    border-right: 1px solid var(--gray-line);
 }
 
 .countdownContainer > div span:last-child {
-    border-left: 1px solid #f0f1f3;
+    border-left: 1px solid var(--gray-line);
 }
 
 .countdownContainer > div span {
@@ -76,6 +76,14 @@
 
 .countdownButton svg {
     margin-left: 10px;
+}
+
+.countdownButton:not(:disabled) svg path {
+    fill: var(--white)
+}
+
+.countdownButton.countdownButtonActive svg path {
+    fill: var(--title)
 }
 
 .countdownButton.countdownButtonActive:hover svg path {

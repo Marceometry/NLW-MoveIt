@@ -21,7 +21,9 @@
 
 .profileContainer div p {
     font-size: 1rem;
-    margin-top: .5rem
+    margin-top: .5rem;
+    display: flex;
+    align-items: center
 }
 
 .profileContainer div p img {

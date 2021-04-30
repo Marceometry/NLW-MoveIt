@@ -2,7 +2,7 @@
     width: 100vw;
     height: 100vh;
     display: flex;
-    background: var(--blue);
+    background: #5965e0;
 }
 
 .bg {
@@ -23,13 +23,13 @@
 #login h1 {
     margin: 100px 0 24px;
     font-size: 2.25rem;
-    color: var(--white)
+    color: #fff;
 }
 
 #login .github {
     max-width: 320px;
     margin-bottom: 40px;
-    color: var(--text-highlight);
+    color: #b3b9ff;
     font-size: 1.25rem;
     line-height: 1.875rem;
 
@@ -43,14 +43,14 @@
 
 #login button {
     width: 80%;
-    padding: 1.5rem 1.875rem;
-    border-radius: 5px;
-    border: 2px solid var(--blue-dark);
-    background: var(--blue-dark);
+    padding: 1.875rem;
     
-    color: var(--white);
+    border-radius: 5px;
+    border: 2px solid #4953b8;
+    background: #4953b8;
+    
+    color: #fff;
     font-size: 1.25rem;
-    line-height: 2.125rem;
 
     transition-property: background, border;
     transition-duration: .2s;
@@ -61,12 +61,12 @@
 }
 
 #login button:hover {
-    background: var(--blue);
-    border: 2px solid var(--blue-dark);
+    background: #5965e0;
+    border: 2px solid #4953b8;
 }
 
 #login button img {
     margin-left: 1rem;
 }
 
-/* linear-gradient(to right, var(--blue-dark), rgba(73, 83, 184, .2)) */
+/* linear-gradient(to right, #4953b8, rgba(73, 83, 184, .2)) */

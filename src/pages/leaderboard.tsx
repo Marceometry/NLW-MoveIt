@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import useSWR, { mutate } from 'swr'
-// import { GetServerSideProps } from 'next'
 
 import { SideBar } from '../components/SideNavBar'
 import { SignButton } from '../components/SignButton'
@@ -8,10 +7,7 @@ import { api } from '../services/api'
 
 import css from '../css/leaderboard.module.css'
 import { LeaderboardRow } from '../components/LeaderboardRow'
-
-type LeaderboardProps = {
-    users: User[]
-}
+import { ThemeChanger } from '../components/ThemeChanger'
 
 export default function Leaderboard() {
     const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all`, api, {
@@ -20,7 +16,7 @@ export default function Leaderboard() {
     mutate(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all`)
 
     if (!data) return <div className="loading"><h2>Carregando...</h2></div>
-    if (error) return <div className="loading"><h2>Erro</h2></div>
+    if (error) return <div className="loading"><h2>Algo deu errado enquanto tentávamos carregar esta página :,(</h2></div>
     
     data.data.sort(function (a, b) {
         return b.totalXp - a.totalXp;
@@ -30,6 +26,7 @@ export default function Leaderboard() {
         <>
         <SideBar />
         <SignButton />
+        <ThemeChanger />
         
         <div className={css.container}>
             <Head>
@@ -59,28 +56,3 @@ export default function Leaderboard() {
         </>
     )
 }
-
-type User = {
-    email: string
-    name: string
-    image: string
-    level: number
-    totalXp: number
-    challengesCompleted: number
-}
-
-// export const getServerSideProps: GetServerSideProps = async () => {
-//     const { data } = await api.get('/api/user/find/all')
-
-//     data.sort(function (a, b,) {
-//         return b.totalXp - a.totalXp;
-//     })
-
-//     const users = data
-
-//     return {
-//         props: {
-//             users
-//         }
-//     }
-// }

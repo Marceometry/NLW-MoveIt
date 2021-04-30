@@ -15,7 +15,7 @@
 
 /* reset */
 * {
-margin: 0;
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -23,6 +23,8 @@ margin: 0;
 body {
     background: var(--background);
     color: var(--text);
+    transition-property: background, color;
+    transition-duration: .2s;
 }
 
 body, input, textarea, button {

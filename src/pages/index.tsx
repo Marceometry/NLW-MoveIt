@@ -15,6 +15,7 @@ import { XpBar } from '../components/XpBar'
 import { SignButton } from '../components/SignButton'
 
 import homePage from '../css/homePage.module.css'
+import { ThemeChanger } from '../components/ThemeChanger'
 
 interface HomeProps {
   level: number;
@@ -47,7 +48,8 @@ export default function Home(props: HomeProps) {
   
         <SideBar />
         <SignButton />
-          
+        <ThemeChanger />
+     
         <div className={homePage.container}>        
           <XpBar />
   
