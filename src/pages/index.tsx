@@ -81,7 +81,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const { data } = await api.get(`/api/user/find/${session.user.email}`)
   
     if (data.error) {
-      await api.post(`/api/user/add/${session.user.email}?name=${session.user.name}&image=${session.user.image}`)
+      try {
+        await api.post(`/api/user/add/${session.user.email}?name=${session.user.name}&image=${session.user.image}`)
+      } catch (err) {
+        alert(
+          err?.response?.data?.error || 'Houve um problema na criação do seu usuário. Tente configurar seu email no Github como público'
+        )
+      }
+      
       const { data } = await api.get(`/api/user/find/${session.user.email}`)
 
       const { level, currentXp, totalXp, challengesCompleted } = data

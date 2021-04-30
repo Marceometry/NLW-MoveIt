@@ -70,7 +70,12 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
 
     useEffect(() => {
         if (challengesCompleted === 0) {return}
-        api.post(`/api/user/update/${session.user.email}?level=${String(level)}&currentXp=${String(currentXp)}&totalXp=${String(totalXp)}&challengesCompleted=${String(challengesCompleted)}`)
+
+        try {
+            api.post(`/api/user/update/${session.user.email}?level=${String(level)}&currentXp=${String(currentXp)}&totalXp=${String(totalXp)}&challengesCompleted=${String(challengesCompleted)}`)
+        } catch (err) {
+            alert( err?.response?.data?.error )
+        }
     }, [level, currentXp, totalXp, challengesCompleted])
 
     function levelUp() {

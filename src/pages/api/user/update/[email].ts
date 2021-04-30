@@ -18,7 +18,7 @@ export default async function FindOneUser(req, res) {
             challengesCompleted
         }: UsersGameInfo = req.query
 
-        if (!email) {
+        if (!email || email === 'null') {
             res.status(400).json({ error: "Configure seu email como público no Github" })
             return
         }
