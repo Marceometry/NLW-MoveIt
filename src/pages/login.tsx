@@ -4,6 +4,7 @@ import { useSession, signIn } from 'next-auth/client'
 import { useRouter } from 'next/router'
 
 import css from '../css/login.module.css'
+import Link from 'next/link'
 
 export default function Login() {
     const [ session, loading ] = useSession()
@@ -42,8 +43,13 @@ export default function Login() {
     
                             <button onClick={() => signIn('github')} type="button">
                                 Fazer Login com Github
-                                {/* <img src="icons/arrow-right.svg" alt="->"/> */}
                             </button>
+    
+                            <Link href="/leaderboard">
+                            <button type="button">
+                                Veja o ranking em tempo real
+                            </button>
+                            </Link>
                         </main>
                     </div>
                 </div>
