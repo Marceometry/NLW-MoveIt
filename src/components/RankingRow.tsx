@@ -15,15 +15,15 @@ type RankingRowProps = {
 }
 
 export function RankingRow({ users }: RankingRowProps) {
-    const [ session, loading ] = useSession()
-    
+    const [ session ] = useSession()
+
     return (
         <>
-        {users?.map((user: User, index) => (
+        {users.map((user: User, index) => (
             <div key={user.email} className={css.row}>
                 <span className={css.position}> {index + 1} </span>
 
-                <div className={css.userInfo} id={session?.user.email === user.email && css.currentUser}>
+                <div className={css.userInfo} id={session?.user.email === user.email ? css.currentUser : ''}>
                     <div className={css.profileContainer}>
                         <img className='animate-left' src={user.image} alt={user.name}/>
                         
