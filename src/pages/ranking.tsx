@@ -35,9 +35,11 @@ export default function Ranking({ users, theme }) {
     if (error) return <div className="loading"><h2>Algo deu errado enquanto tentávamos carregar esta página :,(</h2></div>
     if (!data) return <div className="loading"><h2>Carregando...</h2></div>
     
-    data.slice(0, 2).sort(function (a, b) {
-        return a.level - b.level;
+    data.sort(function (a, b) {
+        return a.level - b.level
     })
+
+    data.slice(0, 2)
 
     return (
         <>
