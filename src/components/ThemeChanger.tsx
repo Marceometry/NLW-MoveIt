@@ -39,7 +39,7 @@ export function ThemeChanger(props) {
 
     return (
         <button className={css.themeChanger} onClick={changeTheme}>
-            <span>Alterar Tema</span>
+            <span>{theme === 'light' ? 'Modo Escuro' : 'Modo Claro'}</span>
         </button>
     )
 }
