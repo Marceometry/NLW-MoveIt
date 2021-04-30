@@ -36,7 +36,7 @@ export default function Ranking({ users, theme }) {
     if (!data) return <div className="loading"><h2>Carregando...</h2></div>
     
     data.sort(function (a, b) {
-        return a.totalXp - b.totalXp
+        return b.totalXp - a.totalXp
     })
 
     return (
