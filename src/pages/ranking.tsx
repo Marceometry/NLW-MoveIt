@@ -26,7 +26,7 @@ type RankingProps = {
 }
 
 export default function Ranking({ users, theme }) {
-    const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all?_limit=3`, api, {
+    const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all`, api, {
         revalidateOnFocus: false,
         initialData: users
     })
@@ -35,9 +35,9 @@ export default function Ranking({ users, theme }) {
     if (error) return <div className="loading"><h2>Algo deu errado enquanto tentávamos carregar esta página :,(</h2></div>
     if (!data) return <div className="loading"><h2>Carregando...</h2></div>
     
-    // data.sort(function (a, b) {
-    //     return b.totalXp - a.totalXp;
-    // })
+    data.slice(0, 2).sort(function (a, b) {
+        return a.level - b.level;
+    })
 
     return (
         <>
@@ -78,7 +78,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const { req } = ctx
     const session = await getSession({ req })
 
-    const usersArray = await api.get('/api/user/find/all?_limit=3')
+    const usersArray = await api.get('/api/user/find/all')
     const users = usersArray.data
 
     const { data } = await api.get(`/api/user/find/${session?.user.email}`)
