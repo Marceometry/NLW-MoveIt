@@ -45,7 +45,7 @@ export default function Login() {
                                 Fazer Login com Github
                             </button>
     
-                            <Link href="/leaderboard">
+                            <Link href="/ranking">
                             <button type="button">
                                 Veja o ranking em tempo real
                             </button>

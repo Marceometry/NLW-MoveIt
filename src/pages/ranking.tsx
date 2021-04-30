@@ -5,11 +5,11 @@ import { SideBar } from '../components/SideNavBar'
 import { SignButton } from '../components/SignButton'
 import { api } from '../services/api'
 
-import css from '../css/leaderboard.module.css'
-import { LeaderboardRow } from '../components/LeaderboardRow'
+import css from '../css/ranking.module.css'
+import { RankingRow } from '../components/RankingRow'
 import { ThemeChanger } from '../components/ThemeChanger'
 
-export default function Leaderboard() {
+export default function Ranking() {
     const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all`, api, {
         revalidateOnFocus: false,
     })
@@ -30,11 +30,11 @@ export default function Leaderboard() {
         
         <div className={css.container}>
             <Head>
-                <title>Move.It | Leaderboard</title>
+                <title>Move.It | Ranking</title>
             </Head>
 
             <header>
-                <h1> Leaderboard </h1>
+                <h1> Ranking </h1>
 
                 <section>
                     <div className={css.leftHeader}>
@@ -49,8 +49,8 @@ export default function Leaderboard() {
                 </section>
             </header>
 
-            <div className={css.leaderboard}>
-                <LeaderboardRow users={data.data} />
+            <div className={css.ranking}>
+                <RankingRow users={data.data} />
             </div>
         </div>
         </>

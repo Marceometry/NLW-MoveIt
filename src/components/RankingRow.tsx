@@ -1,5 +1,5 @@
 import { useSession } from 'next-auth/client'
-import css from '../css/components/leaderboardRow.module.css'
+import css from '../css/components/rankingRow.module.css'
 
 type User = {
     email: string
@@ -10,11 +10,11 @@ type User = {
     challengesCompleted: number
 }
 
-type LeaderboardRowProps = {
+type RankingRowProps = {
     users: User[]
 }
 
-export function LeaderboardRow({ users }: LeaderboardRowProps) {
+export function RankingRow({ users }: RankingRowProps) {
     const [ session, loading ] = useSession()
     
     return (

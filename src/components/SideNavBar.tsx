@@ -5,16 +5,16 @@ import css from "../css/components/sideBar.module.css";
 
 export function SideBar() {
   const [home, setHome] = useState(true)
-  const [leaderboard, setLeaderboard] = useState(false)
+  const [ranking, setRanking] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
     if (router.pathname === "/") {
       setHome(true)
-      setLeaderboard(false)
-    } else if (router.pathname === "/leaderboard") {
+      setRanking(false)
+    } else if (router.pathname === "/ranking") {
       setHome(false)
-      setLeaderboard(true)
+      setRanking(true)
     }
   }, [router.pathname])
   
@@ -38,11 +38,11 @@ export function SideBar() {
         </div>
 
         <div>
-          <div className={`${css.page} ${leaderboard ? css.active : ''}`}></div>
+          <div className={`${css.page} ${ranking ? css.active : ''}`}></div>
           
-          <Link href="/leaderboard">
+          <Link href="/ranking">
             <a>
-              { leaderboard ? (
+              { ranking ? (
                 <img src="icons/ranking-active.svg" alt="Ranking" />
               ) : (
                 <img src="icons/ranking.svg" alt="Ranking" />
