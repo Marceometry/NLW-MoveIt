@@ -26,7 +26,7 @@ export default function Leaderboard() {
         <>
         <SideBar />
         <SignButton />
-        <ThemeChanger />
+        <ThemeChanger theme={data.data[0].theme} />
         
         <div className={css.container}>
             <Head>

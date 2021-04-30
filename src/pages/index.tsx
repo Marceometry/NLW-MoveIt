@@ -18,10 +18,11 @@ import homePage from '../css/homePage.module.css'
 import { ThemeChanger } from '../components/ThemeChanger'
 
 interface HomeProps {
-  level: number;
-  currentXp: number;
-  totalXp: number;
-  challengesCompleted: number;
+  level: number
+  currentXp: number
+  totalXp: number
+  challengesCompleted: number
+  theme: string
 }
 
 export default function Home(props: HomeProps) {
@@ -48,7 +49,7 @@ export default function Home(props: HomeProps) {
   
         <SideBar />
         <SignButton />
-        <ThemeChanger />
+        <ThemeChanger theme={props.theme} />
      
         <div className={homePage.container}>        
           <XpBar />
@@ -91,26 +92,28 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       
       const { data } = await api.get(`/api/user/find/${session.user.email}`)
 
-      const { level, currentXp, totalXp, challengesCompleted } = data
+      const { level, currentXp, totalXp, challengesCompleted, theme } = data
       
       return {
         props: {
           level: level,
           currentXp: currentXp,
           totalXp: totalXp,
-          challengesCompleted: challengesCompleted
+          challengesCompleted: challengesCompleted,
+          theme: theme
         }
       }
     }
 
-    const { level, currentXp, totalXp, challengesCompleted } = data
+    const { level, currentXp, totalXp, challengesCompleted, theme } = data
     
     return {
       props: {
         level: level,
         currentXp: currentXp,
         totalXp: totalXp,
-        challengesCompleted: challengesCompleted
+        challengesCompleted: challengesCompleted,
+        theme: theme
       }
     }
   } else {
