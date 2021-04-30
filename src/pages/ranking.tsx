@@ -36,10 +36,8 @@ export default function Ranking({ users, theme }) {
     if (!data) return <div className="loading"><h2>Carregando...</h2></div>
     
     data.sort(function (a, b) {
-        return a.level - b.level
+        return a.totalXp - b.totalXp
     })
-
-    data.slice(0, 2)
 
     return (
         <>
@@ -82,7 +80,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     const usersArray = await api.get('/api/user/find/all')
     const users = usersArray.data
-    users.slice(0, 2)
 
     const { data } = await api.get(`/api/user/find/${session?.user.email}`)
     if (data.theme === undefined) {
