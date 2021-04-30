@@ -82,6 +82,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     const usersArray = await api.get('/api/user/find/all')
     const users = usersArray.data
+    users.slice(0, 2)
 
     const { data } = await api.get(`/api/user/find/${session?.user.email}`)
     if (data.theme === undefined) {
