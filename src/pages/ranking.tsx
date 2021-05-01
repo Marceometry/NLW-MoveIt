@@ -29,7 +29,7 @@ type RankingProps = {
 export default function Ranking(props: RankingProps) {
     const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all`, fetcher, {
         revalidateOnFocus: false,
-        initialData: props.users
+        // initialData: props.users
     })
     mutate(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all`)
 
@@ -79,8 +79,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const { req } = ctx
     const session = await getSession({ req })
 
-    const usersArray = await api.get('/api/user/find/all')
-    const users = usersArray.data
+    // const usersArray = await api.get('/api/user/find/all')
+    // const users = usersArray.data
 
     const { data } = await api.get(`/api/user/find/${session?.user.email}`)
     if (data.theme === undefined) {
@@ -91,7 +91,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
     return {
         props: {
-            users,
+            // users,
             theme
         }
     }
