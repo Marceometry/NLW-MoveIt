@@ -31,7 +31,7 @@ export default function Ranking(props: RankingProps) {
         revalidateOnFocus: false,
         // initialData: props.users
     })
-    mutate(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all`)
+    // mutate(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all`)
 
     if (error) return <div className="loading"><h2>Algo deu errado enquanto tentávamos carregar esta página :,(</h2></div>
     if (!data) return <div className="loading"><h2>Carregando...</h2></div>
