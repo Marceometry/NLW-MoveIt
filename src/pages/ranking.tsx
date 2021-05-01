@@ -8,7 +8,7 @@ import { SideBar } from '../components/SideNavBar'
 import { SignButton } from '../components/SignButton'
 import { RankingRow } from '../components/RankingRow'
 import { ThemeChanger } from '../components/ThemeChanger'
-import { api } from '../services/api'
+import { api, fetcher } from '../services/api'
 
 import css from '../css/ranking.module.css'
 
@@ -27,11 +27,13 @@ type RankingProps = {
 }
 
 export default function Ranking(props: RankingProps) {
-    const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all`, api, {
+    const url = '/api/user/find/all'
+    mutate(url)
+
+    const { data, error } = useSWR(url, fetcher, {
         revalidateOnFocus: false,
         // initialData: props.users
     })
-    mutate(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all`)
 
     if (error) return <div className="loading"><h2>Algo deu errado enquanto tentávamos carregar esta página :,(</h2></div>
     if (!data) return <div className="loading"><h2>Carregando...</h2></div>

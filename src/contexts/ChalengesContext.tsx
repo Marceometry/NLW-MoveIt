@@ -39,25 +39,10 @@ export const ChallengesContext = createContext({} as ChallengesContextData)
 export function ChallengesProvider({ children, ...rest }: ChallengesProviderProps) {
     const [session, loading] = useSession()
 
-    const [level, setLevel] = useState(1)
-    const [currentXp, setCurrentXp] = useState(0)
-    const [totalXp, setTotalXp] = useState(0)
-    const [challengesCompleted, setChallengesCompleted] = useState(0)
-
-    useEffect(() => {
-        async function Data() {
-            const { data } = await api.get(`/api/user/find/${session.user.email}`)
-            
-            if (data.error) {return}
-            else if (data.challengesCompleted === 0) {return}
-
-            setLevel(data.level)
-            setCurrentXp(data.currentXp)
-            setTotalXp(data.totalXp)
-            setChallengesCompleted(data.challengesCompleted)
-        }
-        Data()
-    }, [])
+    const [level, setLevel] = useState(rest.level)
+    const [currentXp, setCurrentXp] = useState(rest.currentXp)
+    const [totalXp, setTotalXp] = useState(rest.totalXp)
+    const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted)
 
     const [currentChallenge, setCurrentChallenge] = useState(null)
     const [isLevelUpModalOpen, setLevelUpModalOpen] = useState(false)
@@ -74,7 +59,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
         try {
             api.post(`/api/user/update/${session.user.email}?level=${String(level)}&currentXp=${String(currentXp)}&totalXp=${String(totalXp)}&challengesCompleted=${String(challengesCompleted)}`)
         } catch (err) {
-            alert( err?.response?.data?.error )
+            alert( err.response.data.error )
         }
     }, [level, currentXp, totalXp, challengesCompleted])
 
