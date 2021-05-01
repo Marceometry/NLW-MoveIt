@@ -8,7 +8,7 @@ import { SideBar } from '../components/SideNavBar'
 import { SignButton } from '../components/SignButton'
 import { RankingRow } from '../components/RankingRow'
 import { ThemeChanger } from '../components/ThemeChanger'
-import { api } from '../services/api'
+import { api, fetcher } from '../services/api'
 
 import css from '../css/ranking.module.css'
 
@@ -23,12 +23,13 @@ type User = {
 
 type RankingProps = {
     users: User[]
+    theme: string
 }
 
-export default function Ranking({ users, theme }) {
-    const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all`, api, {
+export default function Ranking(props: RankingProps) {
+    const { data, error } = useSWR(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all`, fetcher, {
         revalidateOnFocus: false,
-        initialData: users
+        initialData: props.users
     })
     mutate(`${process.env.NEXT_PUBLIC_URL}/api/user/find/all`)
 
@@ -43,7 +44,7 @@ export default function Ranking({ users, theme }) {
         <>
         <SideBar />
         <SignButton />
-        <ThemeChanger theme={theme} />
+        <ThemeChanger theme={props.theme} />
         
         <div className={css.container}>
             <Head>
