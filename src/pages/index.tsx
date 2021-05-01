@@ -13,9 +13,9 @@ import { Profile } from '../components/Profile'
 import { SideBar } from '../components/SideNavBar'
 import { XpBar } from '../components/XpBar'
 import { SignButton } from '../components/SignButton'
+import { ThemeChanger } from '../components/ThemeChanger'
 
 import homePage from '../css/homePage.module.css'
-import { ThemeChanger } from '../components/ThemeChanger'
 
 interface HomeProps {
   level: number
@@ -82,8 +82,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const { data } = await api.get(`/api/user/find/${session.user.email}`)
   
     if (data.error) {
+      try {
         await api.post(`/api/user/add/${session.user.email}?name=${session.user.name}&image=${session.user.image}`)
-      
+      } catch (err) {
+        alert(
+          err?.response?.data?.error || 'Houve um problema na criação do seu usuário. Tente configurar seu email no Github como público'
+        )
+      }
       
       const { data } = await api.get(`/api/user/find/${session.user.email}`)
 
