@@ -1,8 +1,7 @@
 import Head from 'next/head'
 import { GetServerSideProps } from 'next'
-import { useEffect, useState } from 'react'
 import useSWR, { mutate } from 'swr'
-import { getSession, useSession } from 'next-auth/client'
+import { getSession } from 'next-auth/client'
 
 import { SideBar } from '../components/SideNavBar'
 import { SignButton } from '../components/SignButton'
@@ -37,8 +36,10 @@ export default function Ranking(props: RankingProps) {
 
     if (error) return <div className="loading"><h2>Algo deu errado enquanto tentávamos carregar esta página :,(</h2></div>
     if (!data) return <div className="loading"><h2>Carregando...</h2></div>
-    
-    data.data.sort(function (a, b) {
+
+    const usersArray = data.data as User[]
+
+    usersArray.sort(function (a, b) {
         return b.totalXp - a.totalXp
     })
 
@@ -70,7 +71,7 @@ export default function Ranking(props: RankingProps) {
             </header>
 
             <div className={css.ranking}>
-                <RankingRow users={data.data} />
+                <RankingRow users={usersArray} />
             </div>
         </div>
         </>
