@@ -7,7 +7,7 @@ import css from '../css/login.module.css'
 import Link from 'next/link'
 
 export default function Login() {
-    const [ session, loading ] = useSession()
+    const [ session ] = useSession()
     const router = useRouter()
 
     if (session) {

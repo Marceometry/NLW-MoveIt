@@ -13,7 +13,7 @@
 
 .loginContainer {
     width: 40vw;
-    padding: 40px;
+    padding: 2.5rem;
     display: flex;
     flex-direction: column;
     /* align-items: center; */
@@ -21,13 +21,13 @@
 }
 
 #login h1 {
-    margin: 100px 0 24px;
+    margin: 6.25rem 0 1.5rem;
     font-size: 2.25rem;
     color: #fff;
 }
 
 #login .github {
-    max-width: 320px;
+    max-width: 20rem;
     margin-bottom: 3rem;
     color: #b3b9ff;
     font-size: 1.25rem;
@@ -38,7 +38,7 @@
 }
 
 #login .github img {
-    margin-right: 24px;
+    margin-right: 1.5rem;
 }
 
 #login button {
@@ -74,3 +74,94 @@
 }
 
 /* linear-gradient(to right, #4953b8, rgba(73, 83, 184, .2)) */
+
+@media(max-width: 1400px) {
+    #login button {
+        width: 90%;
+    }
+}
+
+@media(max-width: 1200px) {
+    .bg {
+        width: 50vw;
+    }
+
+    .bg img {
+        width: 100%;
+    }
+    
+    .loginContainer {
+        width: 50vw;
+    }
+
+    #login h1 {
+        margin-top: 4.5rem;
+    }
+}
+
+@media(max-width: 900px) {
+    .bg {
+        width: 50vw;
+    }
+
+    .bg img {
+        width: 100%;
+    }
+    
+    .loginContainer header {
+        width: 80%;
+    }
+    
+    .loginContainer header img {
+        width: 100%;
+    }
+
+    #login h1 {
+        margin-top: 3rem;
+        font-size: 2rem;
+    }
+
+    #login .github {
+        font-size: 1.125rem;
+        margin-bottom: 2rem;
+    }
+
+    #login .github img {
+        margin-right: 1.25rem;
+    }
+
+    #login button {
+        padding: 1.5rem;
+        font-size: 1.125rem;
+    }
+
+    #login button:last-child {
+        margin-top: 1rem;
+    }
+}
+
+@media(min-height: 100vw) {
+    .bg {
+        display: none;
+    }
+    
+    .loginContainer {
+        width: 100vw;
+    }
+
+    .loginContainer header {
+        width: 100%;
+    }
+
+    #login .github {
+        margin-bottom: 2.5rem;
+    }
+
+    #login button {
+        width: 100%;
+    }
+
+    #login button:last-child {
+        margin-top: 1.5rem;
+    }
+}
