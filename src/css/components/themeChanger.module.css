@@ -9,7 +9,7 @@
     transition-property: background-color, color, border;
     transition-duration: .2s;
 
-    position: absolute;
+    position: fixed;
     bottom: 4rem;
     right: 3rem;
 }
@@ -18,4 +18,15 @@
     color: var(--white);
     background: var(--blue);
     border: 1px solid var(--blue);
+}
+
+
+/* mobile */
+
+@media(max-width: 850px) {
+    .themeChanger {
+        padding: .75rem;
+        bottom: 1.25rem;
+        right: 1.25rem;
+    }
 }

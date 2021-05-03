@@ -87,3 +87,64 @@
 .row .userInfo div span strong {
     color: var(--blue);
 }
+
+
+/* mobile */
+
+@media(max-width: 1300px) {
+    .row .userInfo .challengesAndXp {
+        margin-right: 1.5rem;
+    }
+}
+
+@media(max-width: 1080px) {
+    .row .position {
+        width: 4rem;
+        height: 5rem;
+        padding: 1.5rem 0;
+        margin-right: 5px;
+    
+        font-size: 1.25rem;
+        background: var(--white);
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .profileContainer {
+        margin-left: 1rem;
+    }
+
+    .profileContainer img {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .profileContainer div {
+        margin-left: .75rem;
+        overflow: hidden;
+        text-overflow: clip;
+        white-space: nowrap;
+    }
+    
+    .profileContainer div strong {
+        font-size: 1.125rem;
+    }
+
+    .profileContainer div p {
+        font-size: .875rem;
+        margin-top: .375rem
+    }
+    
+    .profileContainer div p img {
+        width: .875rem;
+        height: .875rem;
+        margin-right: .25rem;
+    }
+
+    .row .userInfo .challengesAndXp {
+        width: 13rem;
+        font-size: .875rem;
+    }
+}

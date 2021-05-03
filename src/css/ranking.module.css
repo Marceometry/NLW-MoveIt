@@ -1,8 +1,13 @@
 .container {
-    width: 60%;
     height: 100%;
+    margin: 0 7rem;
+    padding-top: 3rem;
+}
+
+.container header,
+.ranking {
+    width: 60vw;
     margin: 0 auto;
-    padding-top: 50px;
 }
 
 .container header h1 {
@@ -11,8 +16,8 @@
 
 .container header section {
     width: 100%;
-    margin-top: 16px;
-    padding: 24px 0;
+    margin-top: 1rem;
+    padding: 1.5rem 0;
 
     font-size: .875rem;
     font-weight: bold;
@@ -37,5 +42,45 @@
 }
 
 .ranking {
-    padding-bottom: 50px;
+    padding-bottom: 3rem;
+}
+
+
+/* mobile */
+
+@media(max-width: 1300px) {
+    .container header,
+    .ranking {
+        width: 70vw;
+    }
+
+    .container header section .leftHeader {
+        width: 10rem;
+    }
+
+    .container header section .rightHeader {
+        margin-right: 1.5rem;
+    }
+}
+
+@media(max-width: 1080px) {
+    .container {
+        margin-left: 6rem;
+    }
+
+    .container header section .rightHeader {
+        width: 13rem;
+    }
+}
+
+@media(max-width: 850px) {
+    .container {
+        padding: 6.5rem 0;
+        margin: 0;
+    }
+
+    .container header,
+    .ranking {
+        width: 90vw;
+    }
 }

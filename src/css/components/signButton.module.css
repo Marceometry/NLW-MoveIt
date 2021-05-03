@@ -9,6 +9,7 @@
     transition-property: background-color, color, border;
     transition-duration: .2s;
 
+    z-index: 2;
     position: absolute;
     top: 2rem;
     right: 3rem;
@@ -24,4 +25,15 @@
     color: var(--white);
     background: var(--green);
     border: 1px solid var(--green);
+}
+
+
+/* mobile */
+
+@media(max-width: 850px) {
+    .signButton {
+        padding: .75rem;
+        top: .75rem;
+        right: 1.25rem;
+    }
 }

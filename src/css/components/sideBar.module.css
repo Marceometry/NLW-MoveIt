@@ -26,7 +26,7 @@
 
 #aside nav div .page.active {
     width: 5px;
-    height: 3.5rem;
+    height: 4.5rem;
     border-radius: 0 5px 5px 0;
     background: var(--blue);
     position: absolute;
@@ -37,6 +37,67 @@
     cursor: pointer;
 }
 
-#aside nav img:first-child {
-    margin-bottom: 1rem;
+#aside nav img {
+    margin: .5rem 0;
+}
+
+
+/* mobile */
+
+@media(max-width: 1080px) {
+    #aside > img {
+        top: 1.5rem;
+        left: 1.5rem;
+    }
+
+    #aside nav div img {
+        padding: .75rem 2rem;
+    }
+}
+
+@media(max-width: 900px) {
+    #aside > img {
+        width: 2rem;
+    }
+
+    #aside nav div .page.active {
+        height: 4.25rem;
+    }    
+
+    #aside nav div img {
+        padding: .5rem 1.5rem;
+    }
+}
+
+@media(max-width: 850px) {
+    #aside {
+        width: 100vw;
+        height: fit-content;
+        flex-direction: row;
+        z-index: 1;
+        background: var(--white);
+    }
+
+    #aside > img {
+        top: 1.25rem;
+        left: 1.25rem;
+    }
+
+    #aside nav {
+        flex-direction: row;
+    }
+
+    #aside nav div .page.active {
+        width: 5.25rem;
+        height: 5px;
+        border-radius: 0 0 5px 5px;
+    }
+    
+    #aside nav div img {
+        padding: 1rem;
+    }
+    
+    #aside nav img {
+        margin: 0 .5rem;
+    }
 }
