@@ -41,6 +41,11 @@ export function RankingRow({ users }: RankingRowProps) {
                         <span> <strong> {user.challengesCompleted} </strong> completados </span>
                         <span> <strong> {user.totalXp} </strong> xp </span>
                     </div>
+                    
+                    <div className={css.challengesAndXp} id={css.mobile}>
+                        <span> <strong> {user.totalXp} </strong> xp </span>
+                        <span> <strong> {user.challengesCompleted} </strong> <span>desafios</span> completados </span>
+                    </div>
                 </div>
             </div>
         ))}

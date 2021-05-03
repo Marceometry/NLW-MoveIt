@@ -67,6 +67,10 @@ export default function Ranking(props: RankingProps) {
                         <span> DESAFIOS </span>
                         <span> EXPERIÊNCIA </span>
                     </div>
+                    
+                    <div className={css.rightHeader} id={css.mobile}>
+                        <span> DESAFIOS </span>
+                    </div>
                 </section>
             </header>
 

@@ -32,13 +32,17 @@
     justify-content: space-between;
 }
 
-.container header section .leftHeader {
+.leftHeader {
     width: 11rem;
 }
 
-.container header section .rightHeader {
+.rightHeader {
     width: 18rem;
     margin-right: 3rem;
+}
+
+#mobile {
+    display: none;
 }
 
 .ranking {
@@ -54,11 +58,11 @@
         width: 70vw;
     }
 
-    .container header section .leftHeader {
+    .leftHeader {
         width: 10rem;
     }
 
-    .container header section .rightHeader {
+    .rightHeader {
         margin-right: 1.5rem;
     }
 }
@@ -68,7 +72,7 @@
         margin-left: 6rem;
     }
 
-    .container header section .rightHeader {
+    .rightHeader {
         width: 13rem;
     }
 }
@@ -82,5 +86,16 @@
     .container header,
     .ranking {
         width: 95vw;
+    }
+}
+
+@media(max-width: 650px) {
+    .rightHeader {
+        display: none!important;
+    }
+
+    #mobile {
+        width: fit-content;
+        display: flex!important;
     }
 }
