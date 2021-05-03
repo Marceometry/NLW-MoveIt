@@ -8,7 +8,7 @@
 # testing
 /coverage
 /ignore
-/src/contexts/CountdownContext.tsx
+src/contexts/CountdownContext.tsx
 
 # next.js
 /.next/
