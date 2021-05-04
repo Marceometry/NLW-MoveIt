@@ -7,7 +7,6 @@ import { api } from '../services/api'
 import { ChallengesProvider } from '../contexts/ChalengesContext'
 import { CountdownProvider } from '../contexts/CountdownContext'
 import { ChallengeBox } from '../components/ChallengeBox'
-import { CompletedChallenges } from '../components/CompletedChallenges'
 import { Countdown } from '../components/Countdown'
 import { Profile } from '../components/Profile'
 import { SideBar } from '../components/SideNavBar'
@@ -58,7 +57,6 @@ export default function Home(props: HomeProps) {
             <section>
               <div>
                 <Profile name={session.user.name} img={session.user.image} />
-                <CompletedChallenges />
                 <Countdown />
               </div>
   

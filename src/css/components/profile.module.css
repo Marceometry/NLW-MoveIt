@@ -31,3 +31,60 @@
     height: 1rem;
     margin-right: .5rem;
 }
+
+.completedChallenges {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 3.5rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #d7d8da;
+
+    font-weight: 500;
+}
+
+.completedChallenges span:first-child {
+    font-size: 1.25rem;
+}
+
+.completedChallenges span {
+    font-size: 1.5rem;
+}
+
+
+/* mobile */
+
+@media (max-width: 950px) {
+    .profileContainer img {
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .profileContainer div {
+        margin-left: 1.25rem;
+    }    
+
+    .profileContainer div strong {
+        font-size: 1.25rem;
+    }
+
+    .completedChallenges {
+        margin: 3rem 0;
+        padding-bottom: .75rem;
+    }
+
+    .completedChallenges span:first-child {
+        font-size: 1.125rem;
+    }
+
+    .completedChallenges span {
+        font-size: 1.25rem;
+    }
+}
+
+@media(max-width: 650px) {
+    .completedChallenges {
+        margin: 2rem 0 3rem;
+    }
+}

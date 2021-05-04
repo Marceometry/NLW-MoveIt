@@ -10,8 +10,8 @@
     transition-duration: .2s;
 
     position: fixed;
-    bottom: 4rem;
-    right: 3rem;
+    top: 2rem;
+    right: 2rem;
 }
 
 .themeChanger:hover {
@@ -27,6 +27,7 @@
     .themeChanger {
         padding: .75rem;
         bottom: 1.5rem;
-        right: 1.25rem;
+        left: 1.25rem;
+        top: auto;
     }
 }

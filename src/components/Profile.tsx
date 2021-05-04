@@ -3,9 +3,10 @@ import { ChallengesContext } from '../contexts/ChalengesContext';
 import css from '../css/components/profile.module.css';
 
 export function Profile({ name, img }) {
-    const { level } = useContext(ChallengesContext)
+    const { level, challengesCompleted } = useContext(ChallengesContext)
 
     return (
+        <div>
         <div className={css.profileContainer}>
             <img className='animate-left' src={img} alt={name}/>
 
@@ -16,6 +17,12 @@ export function Profile({ name, img }) {
                     Level {level}
                 </p>
             </div>
+        </div>
+        
+        <div className={`${css.completedChallenges} animate-appear`}>
+            <span className='animate-down'>Desafios completos</span>
+            <span className='animate-down'>{challengesCompleted}</span>
+        </div>
         </div>
     )
 }

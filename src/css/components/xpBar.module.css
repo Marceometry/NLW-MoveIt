@@ -1,4 +1,5 @@
 .xpBar {
+    margin: 0 auto;
     display: flex;
     align-items: center;
 }
@@ -26,4 +27,17 @@
     position: absolute;
     top: 12px;
     transform: translateX(-50%);
+}
+
+
+/* mobile */
+
+@media (max-width: 450px) {
+    .xpBar span {
+        font-size: .875rem;
+    }
+
+    .xpBar > div {
+        margin: 0 .75rem;
+    }
 }
