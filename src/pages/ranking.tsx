@@ -1,13 +1,11 @@
 import Head from 'next/head'
-import { GetServerSideProps } from 'next'
 import useSWR, { mutate } from 'swr'
-import { getSession } from 'next-auth/client'
 
 import { SideBar } from '../components/SideNavBar'
 import { SignButton } from '../components/SignButton'
 import { RankingRow } from '../components/RankingRow'
 import { ThemeChanger } from '../components/ThemeChanger'
-import { api, fetcher } from '../services/api'
+import { fetcher } from '../services/api'
 
 import css from '../css/ranking.module.css'
 
@@ -22,24 +20,23 @@ type User = {
 
 type RankingProps = {
     users: User[]
-    theme: string
 }
 
-export default function Ranking(props: RankingProps) {
+export default function Ranking({ users }: RankingProps) {
     const url = '/api/user/find/all'
     mutate(url)
 
     const { data, error } = useSWR(url, fetcher, {
         revalidateOnFocus: false,
-        // initialData: props.users
+        // initialData: users
     })
 
     if (error) return <div className="loading"><h2>Algo deu errado enquanto tentávamos carregar esta página :,(</h2></div>
     if (!data) return <div className="loading"><h2>Carregando...</h2></div>
 
-    const usersArray = data.data as User[]
+    const usersList = data.data as User[]
 
-    usersArray.sort(function (a, b) {
+    usersList.sort(function (a, b) {
         return b.totalXp - a.totalXp
     })
 
@@ -47,7 +44,7 @@ export default function Ranking(props: RankingProps) {
         <>
         <SideBar />
         <SignButton />
-        <ThemeChanger theme={props.theme} />
+        <ThemeChanger />
         
         <div className={css.container}>
             <Head>
@@ -75,31 +72,20 @@ export default function Ranking(props: RankingProps) {
             </header>
 
             <div className={css.ranking}>
-                <RankingRow users={usersArray} />
+                <RankingRow users={usersList} />
             </div>
         </div>
         </>
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-    const { req } = ctx
-    const session = await getSession({ req })
+// export const getServerSideProps: GetServerSideProps = async (ctx) => {
+//     const usersArray = await api.get('/api/user/find/all')
+//     const users = usersArray.data
 
-    // const usersArray = await api.get('/api/user/find/all')
-    // const users = usersArray.data
-
-    const { data } = await api.get(`/api/user/find/${session?.user.email}`)
-    if (data.theme === undefined) {
-        var theme = null
-    } else {
-        var theme = data.theme
-    }
-
-    return {
-        props: {
-            // users,
-            theme
-        }
-    }
-}
+//     return {
+//         props: {
+//             users
+//         }
+//     }
+// }

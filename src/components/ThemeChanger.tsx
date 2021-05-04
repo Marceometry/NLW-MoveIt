@@ -3,15 +3,22 @@ import { useEffect, useState } from "react"
 import { api } from "../services/api"
 import css from '../css/components/themeChanger.module.css'
 
-export function ThemeChanger(props) {
+export function ThemeChanger() {
     const [ session ] = useSession()
     const [ theme, setTheme ] = useState('light')
 
     useEffect(() => {
-        const root = document.documentElement.style
-        if (props.theme === 'dark' && root.getPropertyValue('--white') !== '#fff') {
-            changeTheme()
-        }
+        async function getTheme() {
+            const { data } = await api.get(`/api/user/find/${session?.user.email}`)
+            if (data.theme === undefined) {
+                data.theme = null
+            }
+            
+            const root = document.documentElement.style
+            if (data.theme === 'dark' && root.getPropertyValue('--white') !== '#fff') {
+                changeTheme()
+            }
+        } getTheme()
     }, [])
 
     function changeTheme() {

@@ -48,7 +48,7 @@ export default function Home(props: HomeProps) {
   
         <SideBar />
         <SignButton />
-        <ThemeChanger theme={props.theme} />
+        <ThemeChanger />
      
         <div className={homePage.container}>        
           <XpBar />
@@ -86,32 +86,31 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         alert(
           err?.response?.data?.error || 'Houve um problema na criação do seu usuário. Tente configurar seu email no Github como público'
         )
+        return
       }
       
       const { data } = await api.get(`/api/user/find/${session.user.email}`)
 
-      const { level, currentXp, totalXp, challengesCompleted, theme } = data
+      const { level, currentXp, totalXp, challengesCompleted } = data
       
       return {
         props: {
           level: level,
           currentXp: currentXp,
           totalXp: totalXp,
-          challengesCompleted: challengesCompleted,
-          theme: theme
+          challengesCompleted: challengesCompleted
         }
       }
     }
 
-    const { level, currentXp, totalXp, challengesCompleted, theme } = data
+    const { level, currentXp, totalXp, challengesCompleted } = data
     
     return {
       props: {
         level: level,
         currentXp: currentXp,
         totalXp: totalXp,
-        challengesCompleted: challengesCompleted,
-        theme: theme
+        challengesCompleted: challengesCompleted
       }
     }
   } else {
