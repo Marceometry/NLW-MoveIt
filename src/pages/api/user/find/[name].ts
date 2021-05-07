@@ -1,20 +1,20 @@
 import connect from "../../../../services/database";
 
 type UsersGameInfo = {
-    email: string
+    name: string
 }
 
 export default async function FindOneUser(req, res) {
     if (req.method === 'GET') {        
-        const { email }: UsersGameInfo = req.query
+        const { name }: UsersGameInfo = req.query
 
-        if (!email) {
-            res.status(400).json({ error: "Configure seu email como público no Github" })
+        if (!name) {
+            res.status(400).json({ error: "Missing body parameter" })
             return
         }
 
         const { db } = await connect()
-        const response = await db.collection("usersGameInfo").findOne({ email: email })
+        const response = await db.collection("usersGameInfo").findOne({ name: name })
 
         if (!response) {
             res.json({ error: true })

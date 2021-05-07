@@ -9,7 +9,7 @@ export function ThemeChanger() {
 
     useEffect(() => {
         async function getTheme() {
-            const { data } = await api.get(`/api/user/find/${session?.user.email}`)
+            const { data } = await api.get(`/api/user/find/${session?.user.name}`)
             if (data.theme === undefined) {
                 data.theme = null
             }
@@ -23,7 +23,7 @@ export function ThemeChanger() {
 
     function changeTheme() {
         if (theme === 'light') {
-            api.post(`/api/user/update/theme/${session?.user.email}?theme=dark`)
+            api.post(`/api/user/update/theme/${session?.user.name}?theme=dark`)
             setTheme('dark')
             
             const root = document.documentElement.style
@@ -33,7 +33,7 @@ export function ThemeChanger() {
             root.setProperty('--text', '#999999')
             root.setProperty('--title', '#aaaaaa')
         } else if (theme === 'dark') {
-            api.post(`/api/user/update/theme/${session?.user.email}?theme=light`)
+            api.post(`/api/user/update/theme/${session?.user.name}?theme=light`)
             setTheme('light')
             
             const root = document.documentElement.style

@@ -10,7 +10,7 @@ export default async function AddUsersGameInfo(req, res) {
     if (req.method === 'POST') {
         const { email, name, image }: UsersGameInfo = req.query
 
-        if (email === 'null' || !email || !name || !image) {
+        if ( !email || !name || !image) {
             res.status(400).json({ error: "Configure seu email como público no Github" })
             return
         }
