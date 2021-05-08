@@ -76,7 +76,7 @@ export default function Ranking({ users }: RankingProps) {
 
             <div className={css.ranking}>
                 {isRefreshing ? (
-                    <div className="loading"><h2>Carregando...</h2></div>
+                    <div className="loader">Carregando...</div>
                  ) : (
                     <RankingRow users={users} />
                  )}
