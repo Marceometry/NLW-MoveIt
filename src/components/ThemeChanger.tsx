@@ -48,11 +48,11 @@ export function ThemeChanger() {
     function setLightTheme() {
         const root = document.documentElement.style
         setCurrentTheme('light')
-        root.setProperty('--white', '#101010')
-        root.setProperty('--background', '#202020')
-        root.setProperty('--gray-line', '#818181')
-        root.setProperty('--text', '#999999')
-        root.setProperty('--title', '#aaaaaa')
+        root.setProperty('--white', '#ffffff')
+        root.setProperty('--background', '#f2f3f5')
+        root.setProperty('--gray-line', '#dcdde0')
+        root.setProperty('--text', '#666666')
+        root.setProperty('--title', '#2e384d')
     }
 
     return (

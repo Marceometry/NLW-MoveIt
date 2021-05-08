@@ -85,16 +85,20 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const { data } = await api.get(`/api/user/find/${session.user.name}`)
   
     if (data.error) {
-      try {
-        await api.post(`/api/user/add/${session.user.name}?name=${session.user.name}&image=${session.user.image}`)
-      } catch (err) {
-        alert(
-          err?.response?.data?.error || 'Houve um problema na criação do seu usuário'
-        )
-        return
-      }
+      await api.post(`/api/user/add/${session.user.name}?email=${session.user.email}&image=${session.user.image}`)
+      
       
       const { data } = await api.get(`/api/user/find/${session.user.name}`)
+      
+      if (!data) {
+        return {
+          redirect: {
+            permanent: true,
+            destination: "/login",
+          },
+          props:{},
+        }
+      }
 
       const { level, currentXp, totalXp, challengesCompleted } = data
       
@@ -125,6 +129,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         destination: "/login",
       },
       props:{},
-    };
+    }
   }
 }

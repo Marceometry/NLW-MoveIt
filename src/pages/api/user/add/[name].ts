@@ -8,17 +8,17 @@ type UsersGameInfo = {
 
 export default async function AddUsersGameInfo(req, res) {
     if (req.method === 'POST') {
-        const { email, name, image }: UsersGameInfo = req.query
+        const { name, email, image }: UsersGameInfo = req.query
 
-        if ( !email || !name || !image) {
-            res.status(400).json({ error: "Configure seu email como público no Github" })
+        if ( !name || !email || !image) {
+            res.status(400).json({ error: "Missing body parameters" })
             return
         }
 
         const { db } = await connect()
         const response = await db.collection("usersGameInfo").insertOne({
-            email,
             name,
+            email,
             image,
             level: 1,
             currentXp: 0,
