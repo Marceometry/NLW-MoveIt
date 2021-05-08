@@ -1,7 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
 import { useSession } from 'next-auth/client'
-import { mutate } from 'swr'
-
 import challenges from '../../challenges.json'
 import { LevelUpModal } from '../components/LevelUpModal'
 import { api } from '../services/api'

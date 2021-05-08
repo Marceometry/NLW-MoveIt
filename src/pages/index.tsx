@@ -30,9 +30,14 @@ export default function Home(props: HomeProps) {
   return (
     <>
     {loading && (
-      <div className="loading">
-        <h2>Carregando...</h2>
-      </div>
+      <>
+        <SideBar />
+        <SignButton />
+        <ThemeChanger />
+        <div className="loading">
+          <h2>Carregando...</h2>
+        </div>
+      </>
     )}
 
     {session && (

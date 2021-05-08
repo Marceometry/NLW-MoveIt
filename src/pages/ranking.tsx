@@ -1,16 +1,16 @@
 import Head from 'next/head'
 import { GetServerSideProps } from 'next'
-import useSWR, { mutate } from 'swr'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/client'
 
 import { SideBar } from '../components/SideNavBar'
 import { SignButton } from '../components/SignButton'
 import { RankingRow } from '../components/RankingRow'
 import { ThemeChanger } from '../components/ThemeChanger'
-import { api, fetcher } from '../services/api'
+import { api } from '../services/api'
 
 import css from '../css/ranking.module.css'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 
 type User = {
     email: string
@@ -26,18 +26,8 @@ type RankingProps = {
 }
 
 export default function Ranking({ users }: RankingProps) {
-    // const url = '/api/user/find/all'
-    // mutate(url)
-
-    // const { data, error } = useSWR(url, fetcher, {
-    //     revalidateOnFocus: false,
-    //     // initialData: users
-    // })
-
-    // if (error) return <div className="loading"><h2>Algo deu errado enquanto tentávamos carregar esta página :,(</h2></div>
-    // if (!data) return <div className="loading"><h2>Carregando...</h2></div>
-
     const [isRefreshing, setIsRefreshing] = useState(false);
+    const [ session ] = useSession()
     const router = useRouter()
     
     const refreshData = () => {
@@ -49,17 +39,13 @@ export default function Ranking({ users }: RankingProps) {
       setIsRefreshing(false);
     }, [users]);
 
-    const usersList = users
-
-    usersList.sort(function (a, b) {
-        return b.totalXp - a.totalXp
-    })
-
     return (
         <>
         <SideBar />
         <SignButton />
-        <ThemeChanger />
+
+        {!session && <ThemeChanger />}
+        {session && <ThemeChanger />}
         
         <div className={css.container}>
             <Head>
@@ -92,7 +78,7 @@ export default function Ranking({ users }: RankingProps) {
                 {isRefreshing ? (
                     <div className="loading"><h2>Carregando...</h2></div>
                  ) : (
-                    <RankingRow users={usersList} />
+                    <RankingRow users={users} />
                  )}
             </div>
         </div>
@@ -100,13 +86,16 @@ export default function Ranking({ users }: RankingProps) {
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-    const usersArray = await api.get('/api/user/find/all')
-    const users = usersArray.data
+export const getServerSideProps: GetServerSideProps = async () => {
+    const { data } = await api.get('/api/user/find/all')
+
+    data.sort(function (a, b) {
+        return b.totalXp - a.totalXp
+    })
 
     return {
         props: {
-            users
+            users: data
         }
     }
 }
