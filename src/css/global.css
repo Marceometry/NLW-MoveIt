@@ -44,7 +44,7 @@ button, a {
 }
 
 #nprogress .bar {
-    background: #5965e0;
+    background: var(--blue);
     height: 3px;
 }
 
