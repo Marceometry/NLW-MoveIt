@@ -77,7 +77,7 @@ export default function Ranking({ users }: RankingProps) {
             <div className={css.rankingWrapper}>
             <div className={css.ranking}>
                 {isRefreshing ? (
-                    <div className="loader">Carregando...</div>
+                    <div className="loader"></div>
                  ) : (
                     <RankingRow users={users} />
                  )}

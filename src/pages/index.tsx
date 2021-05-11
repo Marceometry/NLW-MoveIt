@@ -34,7 +34,7 @@ export default function Home(props: HomeProps) {
         <SideBar />
         <SignButton />
         <ThemeChanger />
-        <div className="loader">Carregando...</div>
+        <div className="loader"></div>
       </>
     )}
 
