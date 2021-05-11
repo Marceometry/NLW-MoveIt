@@ -38,6 +38,16 @@ button, a {
     text-decoration: none;
 }
 
+#nprogress {
+    position: relative;
+    z-index: 999;
+}
+
+#nprogress .bar {
+    background: #5965e0;
+    height: 3px;
+}
+
 .loading {
     width: 100vw;
     height: 100vh;
