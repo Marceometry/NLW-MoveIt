@@ -20,15 +20,15 @@ export function RankingRow({ users }: RankingRowProps) {
     return (
         <>
         {users.map((user: User, index) => (
-            <div key={user.email} className={css.row}>
+            <div key={user.name} className={css.row}>
                 <span className={css.position}> {index + 1} </span>
 
-                <div className={css.userInfo} id={session?.user.email === user.email ? css.currentUser : ''}>
+                <div className={css.userInfo} id={session?.user.name === user.name ? css.currentUser : ''}>
                     <div className={css.profileContainer}>
                         <img className='animate-left' src={user.image} alt={user.name}/>
                         
                         <div>
-                            <strong className='animate-appear'>{user.name}{session?.user.email === user.email && ' (Você)'}</strong>
+                            <strong className='animate-appear'>{user.name}{session?.user.name === user.name && ' (Você)'}</strong>
 
                             <p className='animate-up'>
                                 <img src="icons/level.svg" alt="Level"/> 

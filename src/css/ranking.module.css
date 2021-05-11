@@ -10,8 +10,34 @@
     margin: 0 auto;
 }
 
+.container header {
+    position: relative;
+}
+
 .container header h1 {
     color: var(--title);
+}
+
+.container header button {
+    padding: .5rem 1rem;
+    color: var(--blue);
+
+    border-radius: 10px;
+    background: var(--background);
+    border: 1px solid var(--blue);
+    
+    transition-property: background-color, color, border;
+    transition-duration: .2s;
+
+    position: absolute;
+    top: 0;
+    right: 2.5rem;
+}
+
+.container header button:hover {
+    color: var(--white);
+    background: var(--blue);
+    border: 1px solid var(--blue);
 }
 
 .container header section {
@@ -86,6 +112,10 @@
     .container header,
     .ranking {
         width: 95vw;
+    }
+
+    .container header button {
+        right: 0;
     }
 }
 

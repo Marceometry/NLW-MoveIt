@@ -1,11 +1,14 @@
 import Head from 'next/head'
-import useSWR, { mutate } from 'swr'
+import { GetServerSideProps } from 'next'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import { useSession } from 'next-auth/client'
 
 import { SideBar } from '../components/SideNavBar'
 import { SignButton } from '../components/SignButton'
 import { RankingRow } from '../components/RankingRow'
 import { ThemeChanger } from '../components/ThemeChanger'
-import { fetcher } from '../services/api'
+import { api } from '../services/api'
 
 import css from '../css/ranking.module.css'
 
@@ -23,28 +26,26 @@ type RankingProps = {
 }
 
 export default function Ranking({ users }: RankingProps) {
-    const url = '/api/user/find/all'
-    mutate(url)
+    const [isRefreshing, setIsRefreshing] = useState(false);
+    const [ session ] = useSession()
+    const router = useRouter()
+    
+    const refreshData = () => {
+        router.replace(router.asPath)
+        setIsRefreshing(true);
+    }
 
-    const { data, error } = useSWR(url, fetcher, {
-        revalidateOnFocus: false,
-        // initialData: users
-    })
-
-    if (error) return <div className="loading"><h2>Algo deu errado enquanto tentávamos carregar esta página :,(</h2></div>
-    if (!data) return <div className="loading"><h2>Carregando...</h2></div>
-
-    const usersList = data.data as User[]
-
-    usersList.sort(function (a, b) {
-        return b.totalXp - a.totalXp
-    })
+    useEffect(() => {
+      setIsRefreshing(false);
+    }, [users]);
 
     return (
         <>
         <SideBar />
         <SignButton />
-        <ThemeChanger />
+
+        {!session && <ThemeChanger />}
+        {session && <ThemeChanger />}
         
         <div className={css.container}>
             <Head>
@@ -53,6 +54,8 @@ export default function Ranking({ users }: RankingProps) {
 
             <header>
                 <h1> Ranking </h1>
+
+                <button onClick={refreshData}>Atualizar Ranking</button>
 
                 <section>
                     <div className={css.leftHeader}>
@@ -72,20 +75,27 @@ export default function Ranking({ users }: RankingProps) {
             </header>
 
             <div className={css.ranking}>
-                <RankingRow users={usersList} />
+                {isRefreshing ? (
+                    <div className="loader">Carregando...</div>
+                 ) : (
+                    <RankingRow users={users} />
+                 )}
             </div>
         </div>
         </>
     )
 }
 
-// export const getServerSideProps: GetServerSideProps = async (ctx) => {
-//     const usersArray = await api.get('/api/user/find/all')
-//     const users = usersArray.data
+export const getServerSideProps: GetServerSideProps = async () => {
+    const { data } = await api.get('/api/user/find/all')
 
-//     return {
-//         props: {
-//             users
-//         }
-//     }
-// }
+    data.sort(function (a, b) {
+        return b.totalXp - a.totalXp
+    })
+
+    return {
+        props: {
+            users: data
+        }
+    }
+}

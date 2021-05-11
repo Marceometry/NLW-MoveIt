@@ -1,7 +1,7 @@
 import connect from "../../../../services/database";
 
 type UsersGameInfo = {
-    email: string
+    name: string
     level: string
     currentXp: string
     totalXp: string
@@ -11,21 +11,21 @@ type UsersGameInfo = {
 export default async function FindOneUser(req, res) {
     if (req.method === 'POST') {        
         const {
-            email,
+            name,
             level,
             currentXp,
             totalXp,
             challengesCompleted
         }: UsersGameInfo = req.query
 
-        if (!email || email === 'null') {
-            res.status(400).json({ error: "Configure seu email como público no Github" })
+        if (!name) {
+            res.status(400).json({ error: "Missing body parameter" })
             return
         }
 
         const { db } = await connect()
         db.collection("usersGameInfo").updateOne(
-            { email: email },
+            { name: name },
             { $set: {
                 level: Number(level),
                 currentXp: Number(currentXp),

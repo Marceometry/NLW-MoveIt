@@ -1,7 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
 import { useSession } from 'next-auth/client'
-import { mutate } from 'swr'
-
 import challenges from '../../challenges.json'
 import { LevelUpModal } from '../components/LevelUpModal'
 import { api } from '../services/api'
@@ -57,7 +55,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
         if (challengesCompleted === 0) {return}
 
         try {
-            api.post(`/api/user/update/${session.user.email}?level=${String(level)}&currentXp=${String(currentXp)}&totalXp=${String(totalXp)}&challengesCompleted=${String(challengesCompleted)}`)
+            api.post(`/api/user/update/${session.user.name}?level=${String(level)}&currentXp=${String(currentXp)}&totalXp=${String(totalXp)}&challengesCompleted=${String(challengesCompleted)}`)
         } catch (err) {
             alert( err.response.data.error )
         }
