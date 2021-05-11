@@ -38,6 +38,25 @@ button, a {
     text-decoration: none;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--blue);
+  border-radius: 8px;
+  transition: .2s;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--blue-dark);
+}
+
 #nprogress {
     position: relative;
     z-index: 999;

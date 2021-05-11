@@ -4,13 +4,9 @@
     padding-top: 3rem;
 }
 
-.container header,
-.ranking {
+.container header {
     width: 60vw;
     margin: 0 auto;
-}
-
-.container header {
     position: relative;
 }
 
@@ -71,17 +67,22 @@
     display: none;
 }
 
-.ranking {
-    padding-bottom: 3rem;
+.rankingWrapper {
+    width: calc(60vw + 5px);
+    max-height: 60vh;
+    margin: 0 auto;
+    overflow-y: auto;
 }
-
 
 /* mobile */
 
 @media(max-width: 1300px) {
-    .container header,
-    .ranking {
+    .container header {
         width: 70vw;
+    }
+
+    .rankingWrapper {
+        width: calc(70vw + 5px);
     }
 
     .leftHeader {
@@ -109,9 +110,16 @@
         margin: 0;
     }
 
-    .container header,
-    .ranking {
+    .container header {
         width: 95vw;
+    }
+
+    .rankingWrapper {
+        width: 100vw;
+    }
+
+    .ranking {
+        margin: 0 calc(2vw - 5px) 0 2vw;
     }
 
     .container header button {

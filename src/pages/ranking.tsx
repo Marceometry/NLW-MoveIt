@@ -74,12 +74,14 @@ export default function Ranking({ users }: RankingProps) {
                 </section>
             </header>
 
+            <div className={css.rankingWrapper}>
             <div className={css.ranking}>
                 {isRefreshing ? (
                     <div className="loader">Carregando...</div>
                  ) : (
                     <RankingRow users={users} />
                  )}
+            </div>
             </div>
         </div>
         </>
