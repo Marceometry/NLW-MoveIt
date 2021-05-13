@@ -127,13 +127,8 @@
     }
 }
 
-@media(max-width: 650px) {
+@media(max-width: 550px) {
     .rightHeader {
         display: none!important;
-    }
-
-    #mobile {
-        width: fit-content;
-        display: flex!important;
     }
 }
