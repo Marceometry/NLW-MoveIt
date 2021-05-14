@@ -40,7 +40,7 @@ button, a {
 
 ::-webkit-scrollbar {
   width: 5px;
-  cursor: pointer;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
