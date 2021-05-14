@@ -2,7 +2,7 @@ import { signIn, signOut, useSession } from 'next-auth/client'
 import css from '../css/components/signButton.module.css'
 
 export function SignButton() {
-    const [ session, loading ] = useSession()
+    const [ session ] = useSession()
 
     return (
         <>

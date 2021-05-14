@@ -67,20 +67,6 @@ button, a {
     height: 3px;
 }
 
-.loading {
-    width: 100vw;
-    height: 100vh;
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
 /* responsive fonts */
 @media(max-width: 1080px) {
     html {

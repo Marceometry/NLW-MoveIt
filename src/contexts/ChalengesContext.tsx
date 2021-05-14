@@ -35,7 +35,7 @@ interface ChallengesProviderProps {
 export const ChallengesContext = createContext({} as ChallengesContextData)
 
 export function ChallengesProvider({ children, ...rest }: ChallengesProviderProps) {
-    const [session, loading] = useSession()
+    const [session] = useSession()
 
     const [level, setLevel] = useState(rest.level)
     const [currentXp, setCurrentXp] = useState(rest.currentXp)
