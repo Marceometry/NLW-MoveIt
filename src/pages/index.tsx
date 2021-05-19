@@ -4,7 +4,7 @@ import { GetServerSideProps } from 'next'
 import { useSession, getSession } from 'next-auth/client'
 
 import { api } from '../services/api'
-import { ChallengesProvider } from '../contexts/ChalengesContext'
+import { ChallengesProvider } from '../contexts/ChallengesContext'
 import { CountdownProvider } from '../contexts/CountdownContext'
 import { ChallengeBox } from '../components/ChallengeBox'
 import { Countdown } from '../components/Countdown'

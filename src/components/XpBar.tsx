@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { ChallengesContext } from '../contexts/ChalengesContext'
+import { ChallengesContext } from '../contexts/ChallengesContext'
 import css from '../css/components/xpBar.module.css'
 
 export function XpBar() {
