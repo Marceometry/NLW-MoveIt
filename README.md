@@ -28,7 +28,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 <h4> Acesse em: https://nlw-move-it-beta.vercel.app </h4>
 
-O move.it é um app que une a técnica de Pomodoro com a realização de exercícios físicos para quem passa muito tempo na frente do computador, feito durante o evento `Next Level Week`, da [Rocketseat](https://github.com/rocketseat-education).
+O move.it é um app que une a técnica de Pomodoro com a realização de exercícios físicos para quem passa muito tempo na frente do computador, feito durante o evento `Next Level Week 4`, da [Rocketseat](https://github.com/rocketseat-education).
 
 ## 🚀 Funcionalidades que adicionei após o evento
 
